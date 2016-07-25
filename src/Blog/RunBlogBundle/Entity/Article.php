@@ -56,6 +56,10 @@ class Article
      */
     private $nombredeJaime;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+    */
+    private $commentaire;
 
     /**
      * Get id
@@ -185,5 +189,46 @@ class Article
     public function getNombredeJaime()
     {
         return $this->nombredeJaime;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function addCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

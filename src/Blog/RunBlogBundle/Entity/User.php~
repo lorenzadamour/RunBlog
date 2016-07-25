@@ -19,6 +19,16 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+    * @ORM\OneToOne(targetEntity="Administrateur", mappedBy="user")
+    */
+    protected $administrateur;
+
+    /**
+    * @ORM\OneToOne(targetEntity="Utilisateur", mappedBy="user")
+    */
+    protected $utilisateur;
+
     public function __construct()
     {
         parent::__construct();

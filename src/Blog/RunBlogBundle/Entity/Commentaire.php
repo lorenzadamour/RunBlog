@@ -42,7 +42,17 @@ class Commentaire
      */
     private $nombreDeJaime;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="commentaire")
+    * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+    */
+    private $utilisateur;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Article", inversedBy="commentaire")
+    * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+    */
+    protected $article;
 
     /**
      * Get id
@@ -124,5 +134,53 @@ class Commentaire
     public function getNombreDeJaime()
     {
         return $this->nombreDeJaime;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \Blog\RunBlogBundle\Entity\Utilisateur $utilisateur
+     *
+     * @return Commentaire
+     */
+    public function setUtilisateur(\Blog\RunBlogBundle\Entity\Utilisateur $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \Blog\RunBlogBundle\Entity\Utilisateur
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \Blog\RunBlogBundle\Entity\Article $article
+     *
+     * @return Commentaire
+     */
+    public function setArticle(\Blog\RunBlogBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Blog\RunBlogBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

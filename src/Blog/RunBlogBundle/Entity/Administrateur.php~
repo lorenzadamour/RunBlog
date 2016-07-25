@@ -42,6 +42,11 @@ class Administrateur
      */
     private $dateDeNaissance;
 
+    /**
+    * @ORM\OneToOne(targetEntity="User", inversedBy="administrateur")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+    private $user;
 
     /**
      * Get id
@@ -125,4 +130,3 @@ class Administrateur
         return $this->dateDeNaissance;
     }
 }
-

@@ -42,6 +42,11 @@ class Administrateur
      */
     private $dateDeNaissance;
 
+    /**
+    * @ORM\OneToOne(targetEntity="User", inversedBy="administrateur")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+    private $user;
 
     /**
      * Get id
@@ -123,5 +128,29 @@ class Administrateur
     public function getDateDeNaissance()
     {
         return $this->dateDeNaissance;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Blog\RunBlogBundle\Entity\User $user
+     *
+     * @return Administrateur
+     */
+    public function setUser(\Blog\RunBlogBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Blog\RunBlogBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

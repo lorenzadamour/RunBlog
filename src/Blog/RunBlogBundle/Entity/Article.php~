@@ -56,6 +56,10 @@ class Article
      */
     private $nombredeJaime;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+    */
+    private $commentaire;
 
     /**
      * Get id
@@ -187,4 +191,3 @@ class Article
         return $this->nombredeJaime;
     }
 }
-

@@ -42,6 +42,16 @@ class Utilisateur
      */
     private $dateDeNaissance;
 
+    /**
+    * @ORM\OneToOne(targetEntity="User", inversedBy="utilisateur")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+    private $user;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="utilisateur")
+    */
+    private $commentaire;
 
     /**
      * Get id
@@ -123,5 +133,70 @@ class Utilisateur
     public function getDateDeNaissance()
     {
         return $this->dateDeNaissance;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Blog\RunBlogBundle\Entity\User $user
+     *
+     * @return Utilisateur
+     */
+    public function setUser(\Blog\RunBlogBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Blog\RunBlogBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
+     *
+     * @return Utilisateur
+     */
+    public function addCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

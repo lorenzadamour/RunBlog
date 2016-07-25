@@ -42,6 +42,16 @@ class Utilisateur
      */
     private $dateDeNaissance;
 
+    /**
+    * @ORM\OneToOne(targetEntity="User", inversedBy="utilisateur")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+    private $user;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="utilisateur")
+    */
+    private $commentaire;
 
     /**
      * Get id
@@ -125,4 +135,3 @@ class Utilisateur
         return $this->dateDeNaissance;
     }
 }
-
