@@ -54,6 +54,11 @@ class Utilisateur
     private $commentaire;
 
     /**
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="utilisateur")
+    */
+    private $avis;
+
+    /**
      * Get id
      *
      * @return int
@@ -198,5 +203,39 @@ class Utilisateur
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Add avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     *
+     * @return Utilisateur
+     */
+    public function addAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis[] = $avi;
+
+        return $this;
+    }
+
+    /**
+     * Remove avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     */
+    public function removeAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis->removeElement($avi);
+    }
+
+    /**
+     * Get avis
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvis()
+    {
+        return $this->avis;
     }
 }

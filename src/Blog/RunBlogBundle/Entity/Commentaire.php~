@@ -55,6 +55,11 @@ class Commentaire
     protected $article;
 
     /**
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="commentaire")
+    */
+    private $avis;
+
+    /**
      * Get id
      *
      * @return integer

@@ -55,6 +55,11 @@ class Commentaire
     protected $article;
 
     /**
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="commentaire")
+    */
+    private $avis;
+
+    /**
      * Get id
      *
      * @return integer
@@ -182,5 +187,46 @@ class Commentaire
     public function getArticle()
     {
         return $this->article;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->avis = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     *
+     * @return Commentaire
+     */
+    public function addAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis[] = $avi;
+
+        return $this;
+    }
+
+    /**
+     * Remove avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     */
+    public function removeAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis->removeElement($avi);
+    }
+
+    /**
+     * Get avis
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvis()
+    {
+        return $this->avis;
     }
 }

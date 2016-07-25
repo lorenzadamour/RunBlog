@@ -54,6 +54,11 @@ class Utilisateur
     private $commentaire;
 
     /**
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="utilisateur")
+    */
+    private $avis;
+
+    /**
      * Get id
      *
      * @return int
