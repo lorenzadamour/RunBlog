@@ -29,9 +29,9 @@ class Article
     private $titre;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="string", length=255)
      */
     private $date;
 
@@ -61,10 +61,19 @@ class Article
     */
     private $commentaire;
 
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -98,7 +107,7 @@ class Article
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param string $date
      *
      * @return Article
      */
@@ -112,7 +121,7 @@ class Article
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
@@ -184,18 +193,11 @@ class Article
     /**
      * Get nombredeJaime
      *
-     * @return int
+     * @return integer
      */
     public function getNombredeJaime()
     {
         return $this->nombredeJaime;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
