@@ -39,3 +39,7 @@ input:-webkit-autofill {
   background-color: #1ab188;
   color: white;
 }
+
+.navbar {
+     border-radius: 0px;
+}

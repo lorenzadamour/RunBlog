@@ -2,56 +2,110 @@
 {% include "base.html.twig" %}
 
 {% block body %}
-    <h1>Article</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ article.titre }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ article.date }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ article.description }}</td>
-            </tr>
-            <tr>
-                <th>Imagename</th>
-                <td>{{ article.imageName }}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Public</th>
-                <td>{{ article.public }}</td>
-            </tr>
-            <tr>
-                <th>Nombredejaime</th>
-                <td>{{ article.nombredeJaime }}</td>
-            </tr>
-        </tbody>
-    </table>
+<!-- Blog Post Content Column -->
 
-    <ul>
-        <li>
-            <a href="{{ path('allarticle_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('article_edit', { 'id': article.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<div class="container" style="background-color:white;">
+
+<div class="col-lg-8">
+
+    <!-- Blog Post -->
+
+    <!-- Title -->
+    <h1 style="color:black;font-weight:bolder;">{{ article.titre }}</h1>
+
+    <!-- Author -->
+    <p class="lead">
+        by <a href="#">{{ app.user.username }}</a>
+    </p>
+
+    <hr>
+
+    <!-- Date/Time -->
+    <p><span class="glyphicon glyphicon-time"></span>Postée le {{ article.date }}</p>
+
+    <hr>
+
+    <!-- Preview Image -->
+    <img class="img-responsive" src="{{ asset('{{ article.imageName }}') }}" alt="image">
+
+    <hr>
+
+    <!-- Post Content -->
+    <p class="lead">{{ article.description }}</p>
+
+    <div class="foot col-row">
+
+      <div class="col-md-4">
+        <p><a href="#"><i class="fa fa-thumbs-o-up"></i> </a>{{ article.nombredeJaime }} Like</p>
+      </div>
+
+      <div class="col-md-8 text-right">
+        <p>Mise à jour le {% if article.updatedAt %}{{ article.updatedAt|date('d-m-Y') }} à {{ article.updatedAt|date('H:i') }} {% endif %} </p>
+
+      </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Blog Comments -->
+
+    <!-- Comments Form -->
+    <div class="well">
+        <h4>Leave a Comment:</h4>
+        <form role="form">
+            <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <!-- Posted Comments -->
+
+    <!-- Comment -->
+    <!-- <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="http://placehold.it/64x64" alt="">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Start Bootstrap
+                <small>August 25, 2014 at 9:30 PM</small>
+            </h4>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+    </div> -->
+
+    <!-- Comment -->
+
+</div>
+<div class="col-md-4">
+
+
+  {% if is_granted('ROLE_ADMIN') %}
+
+      <ul>
+          <li>
+            <a href="{{ path('allarticle_index') }}"> Voir les articles </a>
+          </li>
+          <li>
+              <a href="{{ path('article_edit', { 'id': article.id }) }}">Editer l'article</a>
+          </li>
+          <li>
+              {{ form_start(delete_form) }}
+                  <input class="btn btn-primary" type="submit" value="Supprimer l'article">
+              {{ form_end(delete_form) }}
+          </li>
+      </ul>
+
+  {% endif %}
+
+</div>
+
+
+
+  </div>
 {% endblock %}
