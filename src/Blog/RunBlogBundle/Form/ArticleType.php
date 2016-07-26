@@ -20,8 +20,8 @@ class ArticleType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
-            ->add('brouillon')
-            ->add('brouillon', ChoiceType::class, array(
+            ->add('public')
+            ->add('public', ChoiceType::class, array(
               'choices' => array(
                 'oui' => 'oui',
                 'non' => 'non',

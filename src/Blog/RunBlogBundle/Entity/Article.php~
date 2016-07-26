@@ -73,9 +73,9 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="brouillon", type="text")
+     * @ORM\Column(name="public", type="text")
      */
-    private $brouillon;
+    private $public;
 
     /**
      * @var int
@@ -229,30 +229,6 @@ class Article
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set brouillon
-     *
-     * @param string $brouillon
-     *
-     * @return Article
-     */
-    public function setBrouillon($brouillon)
-    {
-        $this->brouillon = $brouillon;
-
-        return $this;
-    }
-
-    /**
-     * Get brouillon
-     *
-     * @return string
-     */
-    public function getBrouillon()
-    {
-        return $this->brouillon;
     }
 
     /**

@@ -26,7 +26,7 @@ class ArticleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')->findby(array('brouillon' => 'non'));
+        $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')->findby(array('public' => 'oui'));
 
         return $this->render('article/index.html.twig', array(
             'articles' => $articlespublier,

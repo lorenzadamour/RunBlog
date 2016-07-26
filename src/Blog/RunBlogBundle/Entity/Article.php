@@ -73,9 +73,9 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="brouillon", type="text")
+     * @ORM\Column(name="public", type="text")
      */
-    private $brouillon;
+    private $public;
 
     /**
      * @var int
@@ -232,30 +232,6 @@ class Article
     }
 
     /**
-     * Set brouillon
-     *
-     * @param string $brouillon
-     *
-     * @return Article
-     */
-    public function setBrouillon($brouillon)
-    {
-        $this->brouillon = $brouillon;
-
-        return $this;
-    }
-
-    /**
-     * Get brouillon
-     *
-     * @return string
-     */
-    public function getBrouillon()
-    {
-        return $this->brouillon;
-    }
-
-    /**
      * Set nombredeJaime
      *
      * @param integer $nombredeJaime
@@ -344,4 +320,28 @@ class Article
   return $this->imageFile;
     }
 
+
+    /**
+     * Set public
+     *
+     * @param string $public
+     *
+     * @return Article
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return string
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
 }
