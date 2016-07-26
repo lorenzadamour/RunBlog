@@ -15,11 +15,19 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{% if article.date %}{{ article.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ article.date }}</td>
             </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ article.description }}</td>
+            </tr>
+            <tr>
+                <th>Imagename</th>
+                <td>{{ article.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Brouillon</th>

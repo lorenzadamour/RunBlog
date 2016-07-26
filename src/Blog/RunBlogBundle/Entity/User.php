@@ -4,11 +4,16 @@ namespace Blog\RunBlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity
+ * @Vich\Uploadable
  */
 class User extends BaseUser
 {
@@ -41,6 +46,29 @@ class User extends BaseUser
     private $dateDeNaissance;
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+     *
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="utilisateur")
     */
     private $commentaire;
@@ -49,6 +77,7 @@ class User extends BaseUser
     * @ORM\OneToMany(targetEntity="Avis", mappedBy="utilisateur")
     */
     private $avis;
+
 
     public function __construct()
     {
@@ -196,5 +225,77 @@ class User extends BaseUser
     public function getAvis()
     {
         return $this->avis;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Blog\RunBlogBundle\Entity\Image $image
+     *
+     * @return User
+     */
+    public function setImage(\Blog\RunBlogBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Blog\RunBlogBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set imageName
+     *
+     * @param string $imageName
+     *
+     * @return User
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * Get imageName
+     *
+     * @return string
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

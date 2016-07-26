@@ -10,6 +10,8 @@
                 <th>Titre</th>
                 <th>Date</th>
                 <th>Description</th>
+                <th>Imagename</th>
+                <th>Updatedat</th>
                 <th>Brouillon</th>
                 <th>Nombredejaime</th>
                 <th>Actions</th>
@@ -20,8 +22,10 @@
             <tr>
                 <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
                 <td>{{ article.titre }}</td>
-                <td>{% if article.date %}{{ article.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ article.date }}</td>
                 <td>{{ article.description }}</td>
+                <td>{{ article.imageName }}</td>
+                <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ article.brouillon }}</td>
                 <td>{{ article.nombredeJaime }}</td>
                 <td>

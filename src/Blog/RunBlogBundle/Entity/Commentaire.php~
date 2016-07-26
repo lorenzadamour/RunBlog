@@ -69,4 +69,166 @@ class Commentaire
         return $this->id;
     }
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->avis = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Commentaire
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set nombreDeJaime
+     *
+     * @param integer $nombreDeJaime
+     *
+     * @return Commentaire
+     */
+    public function setNombreDeJaime($nombreDeJaime)
+    {
+        $this->nombreDeJaime = $nombreDeJaime;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreDeJaime
+     *
+     * @return integer
+     */
+    public function getNombreDeJaime()
+    {
+        return $this->nombreDeJaime;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \Blog\RunBlogBundle\Entity\User $utilisateur
+     *
+     * @return Commentaire
+     */
+    public function setUtilisateur(\Blog\RunBlogBundle\Entity\User $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \Blog\RunBlogBundle\Entity\User
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \Blog\RunBlogBundle\Entity\Article $article
+     *
+     * @return Commentaire
+     */
+    public function setArticle(\Blog\RunBlogBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Blog\RunBlogBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * Add avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     *
+     * @return Commentaire
+     */
+    public function addAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis[] = $avi;
+
+        return $this;
+    }
+
+    /**
+     * Remove avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     */
+    public function removeAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis->removeElement($avi);
+    }
+
+    /**
+     * Get avis
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvis()
+    {
+        return $this->avis;
+    }
 }
