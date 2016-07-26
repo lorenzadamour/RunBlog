@@ -61,7 +61,7 @@ class Article
     */
     private $commentaire;
 
-    
+
     /**
      * Constructor
      */
@@ -79,6 +79,8 @@ class Article
     {
         return $this->id;
     }
+
+    
 
     /**
      * Set titre

@@ -20,14 +20,35 @@ class User extends BaseUser
     protected $id;
 
     /**
-    * @ORM\OneToOne(targetEntity="Administrateur", mappedBy="user")
-    */
-    protected $administrateur;
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
 
     /**
-    * @ORM\OneToOne(targetEntity="Utilisateur", mappedBy="user")
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDeNaissance", type="date")
+     */
+    private $dateDeNaissance;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="utilisateur")
     */
-    protected $utilisateur;
+    private $commentaire;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="utilisateur")
+    */
+    private $avis;
 
     public function __construct()
     {
@@ -35,51 +56,145 @@ class User extends BaseUser
         // your own logic
     }
 
+
+
     /**
-     * Set administrateur
+     * Set nom
      *
-     * @param \Blog\RunBlogBundle\Entity\Administrateur $administrateur
+     * @param string $nom
      *
      * @return User
      */
-    public function setAdministrateur(\Blog\RunBlogBundle\Entity\Administrateur $administrateur = null)
+    public function setNom($nom)
     {
-        $this->administrateur = $administrateur;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get administrateur
+     * Get nom
      *
-     * @return \Blog\RunBlogBundle\Entity\Administrateur
+     * @return string
      */
-    public function getAdministrateur()
+    public function getNom()
     {
-        return $this->administrateur;
+        return $this->nom;
     }
 
     /**
-     * Set utilisateur
+     * Set prenom
      *
-     * @param \Blog\RunBlogBundle\Entity\Utilisateur $utilisateur
+     * @param string $prenom
      *
      * @return User
      */
-    public function setUtilisateur(\Blog\RunBlogBundle\Entity\Utilisateur $utilisateur = null)
+    public function setPrenom($prenom)
     {
-        $this->utilisateur = $utilisateur;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     /**
-     * Get utilisateur
+     * Get prenom
      *
-     * @return \Blog\RunBlogBundle\Entity\Utilisateur
+     * @return string
      */
-    public function getUtilisateur()
+    public function getPrenom()
     {
-        return $this->utilisateur;
+        return $this->prenom;
+    }
+
+    /**
+     * Set dateDeNaissance
+     *
+     * @param \DateTime $dateDeNaissance
+     *
+     * @return User
+     */
+    public function setDateDeNaissance($dateDeNaissance)
+    {
+        $this->dateDeNaissance = $dateDeNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDeNaissance
+     *
+     * @return \DateTime
+     */
+    public function getDateDeNaissance()
+    {
+        return $this->dateDeNaissance;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
+     *
+     * @return User
+     */
+    public function addCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Add avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     *
+     * @return User
+     */
+    public function addAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis[] = $avi;
+
+        return $this;
+    }
+
+    /**
+     * Remove avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     */
+    public function removeAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis->removeElement($avi);
+    }
+
+    /**
+     * Get avis
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvis()
+    {
+        return $this->avis;
     }
 }
