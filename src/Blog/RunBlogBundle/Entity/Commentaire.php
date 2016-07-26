@@ -43,8 +43,8 @@ class Commentaire
     private $nombreDeJaime;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="commentaire")
-    * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="commentaire")
+    * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
     */
     private $utilisateur;
 
@@ -67,6 +67,15 @@ class Commentaire
     public function getId()
     {
         return $this->id;
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->avis = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -144,11 +153,11 @@ class Commentaire
     /**
      * Set utilisateur
      *
-     * @param \Blog\RunBlogBundle\Entity\Utilisateur $utilisateur
+     * @param \Blog\RunBlogBundle\Entity\User $utilisateur
      *
      * @return Commentaire
      */
-    public function setUtilisateur(\Blog\RunBlogBundle\Entity\Utilisateur $utilisateur = null)
+    public function setUtilisateur(\Blog\RunBlogBundle\Entity\User $utilisateur = null)
     {
         $this->utilisateur = $utilisateur;
 
@@ -158,7 +167,7 @@ class Commentaire
     /**
      * Get utilisateur
      *
-     * @return \Blog\RunBlogBundle\Entity\Utilisateur
+     * @return \Blog\RunBlogBundle\Entity\User
      */
     public function getUtilisateur()
     {
@@ -187,13 +196,6 @@ class Commentaire
     public function getArticle()
     {
         return $this->article;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->avis = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

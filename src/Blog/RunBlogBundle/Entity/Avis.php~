@@ -29,8 +29,8 @@ class Avis
     private $reaction;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="avis")
-    * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="avis")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
     */
     private $utilisateur;
 
@@ -50,27 +50,5 @@ class Avis
         return $this->id;
     }
 
-    /**
-     * Set reaction
-     *
-     * @param integer $reaction
-     *
-     * @return Avis
-     */
-    public function setReaction($reaction)
-    {
-        $this->reaction = $reaction;
 
-        return $this;
-    }
-
-    /**
-     * Get reaction
-     *
-     * @return int
-     */
-    public function getReaction()
-    {
-        return $this->reaction;
-    }
 }

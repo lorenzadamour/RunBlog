@@ -19,7 +19,7 @@ class ArticleController extends Controller
     /**
      * Lists all Article entities.
      *
-     * @Route("/", name="article_index")
+     * @Route("/allarticle", name="article_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -31,6 +31,24 @@ class ArticleController extends Controller
         return $this->render('article/index.html.twig', array(
             'articles' => $articles,
         ));
+    }
+
+    /**
+     * Lists all Article entities.
+     *
+     * @Route("/", name="articlepublier_index")
+     * @Method("GET")
+     */
+    public function articlePublier()
+    {
+      $em = $this->getDoctrine()->getManager();
+
+      $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')
+                            ->findBy(array('brouillon' => 'non'));
+
+      return $this->render('article/index.html.twig', array(
+          'articles' => $articlespublier,
+      ));
     }
 
     /**
