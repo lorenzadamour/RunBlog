@@ -1,0 +1,47 @@
+{% include "FOSUserBundle::layout.html.twig" %}
+{% include "base.html.twig" %}
+
+
+
+<div class="container">
+  <h2>Basic Table</h2>
+  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Imagename</th>
+        <th>Updatedat</th>
+        <th>Brouillon</th>
+        <th>Nombredejaime</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+          <tr>
+              <td>{{ article.titre }}</td>
+              <td>{{ article.date }}</td>
+              <td>{{ article.description }}</td>
+              <td>{{ article.imageName }}</td>
+              <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+              <td>{{ article.brouillon }}</td>
+              <td>{{ article.nombredeJaime }}</td>
+              <td>
+                  <ul>
+                      <li>
+                          <a href="{{ path('article_show', { 'id': article.id }) }}">show</a>
+                      </li>
+                      <li>
+                          <a href="{{ path('article_edit', { 'id': article.id }) }}">edit</a>
+                      </li>
+                  </ul>
+              </td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  <a href="{{ path('article_new') }}">Create a new entry</a>

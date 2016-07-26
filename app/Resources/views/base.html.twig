@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
+      <head>
+          <meta charset="UTF-8" />
+          <title></title>
+          <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css')}}">
+          <link rel="stylesheet" type="" href="{{ asset ('css/bootstrap.min.css') }}">
+          <link rel="stylesheet" type="" href="{{ asset ('css/style_article.css') }}">
+          <link rel="stylesheet" type="" href="{{ asset ('css/font-awesome.min.css') }}">
+          <link rel="stylesheet" type="" href="{{ asset ('css/formstyle.css') }}">
+          <link rel="stylesheet" type="" href="{{ asset ('css/normalize.css') }}">
+          <script src="{{ asset ('script/bootstrap.min.js') }}"></script>
+      </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+
+        {% block javascript %}
+        <script src="{{ asset ('script/jquery.js')}}"></script>
+        <script src="{{ asset ('script/bootstrap.min.js')}}"></script>
+        <script src="{{ asset ('script/form.min.js')}}"></script>
+
+        {% endblock %}
+
+
+      {% endblock %}
     </body>
+
+
 </html>
