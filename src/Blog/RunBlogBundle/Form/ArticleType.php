@@ -18,11 +18,9 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('date')
             ->add('description')
             ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
             ->add('brouillon')
-            ->add('nombredeJaime')
             ->add('brouillon', ChoiceType::class, array(
               'choices' => array(
                 'oui' => 'oui',

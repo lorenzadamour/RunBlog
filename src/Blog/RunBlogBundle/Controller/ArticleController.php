@@ -17,9 +17,26 @@ use Blog\RunBlogBundle\Form\ArticleType;
 class ArticleController extends Controller
 {
     /**
-     * Lists all Article entities.
+     * Lists Article Published.
      *
      * @Route("/", name="article_index")
+     * @Method("GET")
+     */
+    public function articlesPublierAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')->findby(array('brouillon' => 'non'));
+
+        return $this->render('article/index.html.twig', array(
+            'articles' => $articlespublier,
+        ));
+    }
+
+    /**
+     * Lists all Article entities.
+     *
+     * @Route("/admin", name="allarticle_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -44,7 +61,8 @@ class ArticleController extends Controller
         $article = new Article();
         $form = $this->createForm('Blog\RunBlogBundle\Form\ArticleType', $article);
         $form->handleRequest($request);
-
+        $article->setDate(date("d-m-Y"))
+                ->setNombredeJaime(0);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
@@ -89,6 +107,7 @@ class ArticleController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $article->setDate(date("d-m-Y"));
             $em->persist($article);
             $em->flush();
 
