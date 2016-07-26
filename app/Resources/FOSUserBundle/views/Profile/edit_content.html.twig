@@ -1,0 +1,27 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form class="form " action="{{ path("fos_user_security_check") }}" method="post">
+
+  <ul class="tab-group">
+    <li class="tab"><a href="{{ path('fos_user_profile_show') }}">VOTRE PROFIL</a></li>
+    <li class="tab active"><a href="#">MODIFIER PROFIL</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="signup">
+
+      {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': '' } }) }}
+          {{ form_widget(form) }}
+          <div>
+              <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+          </div>
+      {{ form_end(form) }}
+
+
+    </div>
+
+    <div id="login">
+    </div>
+
+  </div><!-- tab-content -->
+</form> <!-- /form -->

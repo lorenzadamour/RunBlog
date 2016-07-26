@@ -1,0 +1,28 @@
+<!--  -->
+<form class="form " action="{{ path("fos_user_security_check") }}" method="post">
+
+  <ul class="tab-group">
+    <li class="tab active "><a href="#">VOTRE PROFIL</a></li>
+    <li class="tab"><a href="{{ path('fos_user_profile_edit') }}">MODIFIER PROFIL</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="signup">
+      <div class="top-row">
+        <div class="fos_user_user_show text-center">
+          <h3>Votre email</h3>
+          <h3> {{ user.email }}</h3>
+          <h3> Votre Pseudo</h3>
+          <h3>{{ user.username }}</h3>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div id="login">
+    </div>
+
+  </div><!-- tab-content -->
+</form> <!-- /form -->

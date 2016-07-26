@@ -1,0 +1,33 @@
+body{
+  background-image: url(http://www.fond-ecran-hd.net/pc-driver/1553.jpg);
+  background-repeat: no-repeat;
+}
+.navbar-default{
+    background-color: rgba(255,255,255,0.7);
+    border-color: rgba(255,255,255,0.7)
+    opacity: 0.1px;
+    color: white;
+    margin:0;
+}
+.carousel-inner{
+  border-bottom: 5px solid rgba(255,255,255,0.7);
+  height: 250px;
+  
+}
+.navbar-default .navbar-nav>li>a:hover{
+  background-color:white;
+}
+
+.carousel-indicators{
+    
+}
+
+.reservation {
+  height: 200px;
+  opacity: 0.1px;
+  background-color: white;
+  background: rgba(255, 255, 255, 0.7);
+  width: auto;
+  margin-top: 30px;
+  border: 5px solid #FFF;
+}

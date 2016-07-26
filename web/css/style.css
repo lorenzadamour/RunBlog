@@ -1,0 +1,30 @@
+body{
+  background-image: url(http://www.fond-ecran-hd.net/pc-driver/1553.jpg);
+  /*background-image: url(backg.jpg)*/
+  background-repeat: no-repeat;
+}
+.navbar-default{
+    background-color: rgba(255,255,255,0.7);
+    border-color: rgba(255,255,255,0.7)
+    opacity: 0.1px;
+    color: white;
+}
+.carousel-inner{
+  border: 5px solid rgba(255,255,255,0.7);
+  height: 500px;
+}
+.navbar-default .navbar-nav>li>a:hover{
+  background-color:white;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
