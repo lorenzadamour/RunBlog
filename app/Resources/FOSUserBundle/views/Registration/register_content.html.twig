@@ -16,6 +16,22 @@
 
       <div class="top-row">
         <div class="field-wrap form-group">
+            {{ form_widget(form.nom, {'attr': {'placeholder':'Nom'}}) }}
+          </div>
+          <div class="field-wrap form-group">
+            {{ form_widget(form.prenom, {'attr': {'placeholder':'Prenom'}}) }}
+            </div>
+            <div class="field-wrap form-group">
+            {{ form_widget(form.dateDeNaissance, {'attr': {'placeholder':'Date de Naissance'}}) }}
+              </div>
+              <div class="field-wrap form-group">
+                  {{ form_widget(form.imageFile) }}
+                </div>
+
+
+
+
+        <div class="field-wrap form-group">
           {{ form_widget(form.username, {'attr': {'placeholder':'Pseudo'}}) }}
         </div>
 
@@ -32,6 +48,7 @@
         {{ form_widget(form.plainPassword.second, {'attr': {'placeholder':'Vérification mot de passe'}}) }}
         {{ form_errors(form.plainPassword.second) }}
       </div>
+
 
       <button type="submit" class="button button-block"/>Envoyer</button>
     </div>

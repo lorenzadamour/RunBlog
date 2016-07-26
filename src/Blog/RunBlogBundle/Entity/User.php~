@@ -78,224 +78,35 @@ class User extends BaseUser
     */
     private $avis;
 
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
-
-
-
     /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return User
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
+    * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+    * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+    * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+    * must be able to accept an instance of 'File' as the bundle will inject one here
+    * during Doctrine hydration.
+    *
+    * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+    *
+    * @return Product
+    */
+        public function setImageFile(File $image = null)
+        {
+            $this->imageFile = $image;
 
-        return $this;
+              if ($image) {
+        // It is required that at least one field changes if you are using doctrine
+        // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+      }
+            return $this;
     }
-
     /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
+    * @return File
+    */
+        public function getImageFile()
+        {
 
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     *
-     * @return User
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
+      return $this->imageFile;
+        }
 
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * Set dateDeNaissance
-     *
-     * @param \DateTime $dateDeNaissance
-     *
-     * @return User
-     */
-    public function setDateDeNaissance($dateDeNaissance)
-    {
-        $this->dateDeNaissance = $dateDeNaissance;
-
-        return $this;
-    }
-
-    /**
-     * Get dateDeNaissance
-     *
-     * @return \DateTime
-     */
-    public function getDateDeNaissance()
-    {
-        return $this->dateDeNaissance;
-    }
-
-    /**
-     * Add commentaire
-     *
-     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
-     *
-     * @return User
-     */
-    public function addCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
-    {
-        $this->commentaire[] = $commentaire;
-
-        return $this;
-    }
-
-    /**
-     * Remove commentaire
-     *
-     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
-     */
-    public function removeCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire)
-    {
-        $this->commentaire->removeElement($commentaire);
-    }
-
-    /**
-     * Get commentaire
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
-
-    /**
-     * Add avi
-     *
-     * @param \Blog\RunBlogBundle\Entity\Avis $avi
-     *
-     * @return User
-     */
-    public function addAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
-    {
-        $this->avis[] = $avi;
-
-        return $this;
-    }
-
-    /**
-     * Remove avi
-     *
-     * @param \Blog\RunBlogBundle\Entity\Avis $avi
-     */
-    public function removeAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
-    {
-        $this->avis->removeElement($avi);
-    }
-
-    /**
-     * Get avis
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAvis()
-    {
-        return $this->avis;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \Blog\RunBlogBundle\Entity\Image $image
-     *
-     * @return User
-     */
-    public function setImage(\Blog\RunBlogBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Blog\RunBlogBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set imageName
-     *
-     * @param string $imageName
-     *
-     * @return User
-     */
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
-
-        return $this;
-    }
-
-    /**
-     * Get imageName
-     *
-     * @return string
-     */
-    public function getImageName()
-    {
-        return $this->imageName;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return User
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
 }
