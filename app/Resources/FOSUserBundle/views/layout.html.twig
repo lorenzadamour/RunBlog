@@ -19,9 +19,8 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          <li class="<--active-->"><a href="#">BLOG<span class="sr-only">(current)</span></a></li>
-          <li><a href="#">ARCTICLE</a></li>
-          <li><a href="#">GALLERIE</a></li>
+          <li><a href="#">ARTICLES</a></li>
+          <li><a href="#">GALERIE</a></li>
           {% else %}
 
           {% endif %}
@@ -42,6 +41,21 @@
         -->
         {% endif %}
       </li>
+
+      <!-- PARTIE ADMIN -->
+      {% if is_granted('ROLE_ADMIN') %}
+
+        <li class="nav-item">
+            <a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" id="admin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ path('article_new') }}">Créer un article</a></li>
+              <li><a href="{{ path('allarticle_index') }}">Voir les articles</a></li>
+            </ul>
+          </li>
+
+       {% endif %}
+
+       <!-- FIN PARTIE ADMIN -->
 
       <li class="nav-item">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

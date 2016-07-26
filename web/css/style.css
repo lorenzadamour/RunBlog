@@ -34,3 +34,8 @@ input:-webkit-autofill {
   background-color: white;
   padding: 2%;
 }
+
+#admin {
+  background-color: #1ab188;
+  color: white;
+}
