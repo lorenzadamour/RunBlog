@@ -47,8 +47,6 @@ class ArticleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $article->setDate(date("d-m-Y"))
-                    ->setNombredeJaime(0);
             $em->persist($article);
             $em->flush();
 
@@ -91,7 +89,6 @@ class ArticleController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $article->setDate(date("d-m-Y"));
             $em->persist($article);
             $em->flush();
 
@@ -140,5 +137,4 @@ class ArticleController extends Controller
             ->getForm()
         ;
     }
-
 }

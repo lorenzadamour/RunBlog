@@ -5,8 +5,8 @@ namespace Blog\RunBlogBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArticleType extends AbstractType
 {
@@ -18,15 +18,18 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre')
-            //->add('date', DateType::class)
+            ->add('date')
             ->add('description')
-            ->add(
-            'brouillon', ChoiceType::class, array(
+            ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
+            ->add('brouillon')
+            ->add('nombredeJaime')
+            ->add('brouillon', ChoiceType::class, array(
               'choices' => array(
-                  'Oui' => 'Oui',
-                  'Non' => 'Non',
-              ),
-            ));
+                'oui' => 'oui',
+                'non' => 'non',
+              )
+            ))
+        ;
     }
 
     /**

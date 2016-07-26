@@ -29,8 +29,8 @@ class Avis
     private $reaction;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="avis")
-    * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="avis")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
     */
     private $utilisateur;
 
@@ -50,6 +50,8 @@ class Avis
         return $this->id;
     }
 
+
+
     /**
      * Set reaction
      *
@@ -67,10 +69,58 @@ class Avis
     /**
      * Get reaction
      *
-     * @return int
+     * @return integer
      */
     public function getReaction()
     {
         return $this->reaction;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \Blog\RunBlogBundle\Entity\User $utilisateur
+     *
+     * @return Avis
+     */
+    public function setUtilisateur(\Blog\RunBlogBundle\Entity\User $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \Blog\RunBlogBundle\Entity\User
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
+     *
+     * @return Avis
+     */
+    public function setCommentaire(\Blog\RunBlogBundle\Entity\Commentaire $commentaire = null)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return \Blog\RunBlogBundle\Entity\Commentaire
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }
