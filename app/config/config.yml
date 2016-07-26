@@ -71,3 +71,11 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Blog\RunBlogBundle\Entity\User
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        product_image:
+            uri_prefix:         /images/products
+            upload_destination: %kernel.root_dir%/../web/images/products
