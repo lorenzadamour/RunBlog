@@ -114,21 +114,29 @@ class ArticleController extends Controller
 
     }
 
-    public function likeComment(Article $article, Request $request)
+
+    /**
+     * Like Article entity.
+     *
+     * @Route("/{article}/{commentaire}/likecommentaire", name="like_commentaire")
+     * @Method({"GET", "POST"})
+     */
+    public function likeComment(Article $article, Commentaire $commentaire, Request $request)
     {
-        $comment->getId();
+        $article->getId();
+        $commentaire->getId();
         $user = $this->getUser();
         $user->getId();
 
         $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Avis');
-        $avis = $em->findBy(array('comment' => $comment ,'utilisateur' => $user));
+        $avis = $em->findBy(array('commentaire' => $commentaire ,'utilisateur' => $user));
 
         if ($avis) {
           return $this->redirectToRoute('article_show', array('id' => $article->getId()));
 
         }else {
           $avis = new Avis();
-          $avis->setComment($comment)
+          $avis->setCommentaire($commentaire)
                ->setUtilisateur($user)
                ->setReaction(1);
 
