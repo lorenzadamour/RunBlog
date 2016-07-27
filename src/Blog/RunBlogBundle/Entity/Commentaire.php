@@ -22,9 +22,9 @@ class Commentaire
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="string", length=255)
      */
     private $date;
 
@@ -81,7 +81,7 @@ class Commentaire
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param string $date
      *
      * @return Commentaire
      */
@@ -95,7 +95,7 @@ class Commentaire
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
