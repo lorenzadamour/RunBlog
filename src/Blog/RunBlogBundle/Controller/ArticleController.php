@@ -86,28 +86,48 @@ class ArticleController extends Controller
      * @Route("/{id}/like", name="like_article")
      * @Method({"GET", "POST"})
      */
-    public function likeArticle(Request $request)
+    public function likeArticle(Article $article, Request $request)
     {
+        $article->getId();
         $user = $this->getUser();
         $user->getId();
 
         $avis = new Avis();
-        $avis->setArticle($id)
+        $avis->setArticle($article)
              ->setUtilisateur($user)
              ->setReaction(1);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($avis);
             $em->flush();
 
             return $this->redirectToRoute('article_show', array('id' => $article->getId()));
-        }
 
-        return $this->render('article/new.html.twig', array(
-            'article' => $article,
-            'form' => $form->createView(),
-        ));
+    }
+
+    /**
+     * Like Article entity.
+     *
+     * @Route("/{id}/dislike", name="dislike_article")
+     * @Method({"GET", "POST"})
+     */
+    public function dislikeArticle(Article $article, Request $request)
+    {
+        $article->getId();
+        $user = $this->getUser();
+        $user->getId();
+
+        $avis = new Avis();
+        $avis->setArticle($article)
+             ->setUtilisateur($user)
+             ->setReaction(-1);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($avis);
+            $em->flush();
+
+            return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+
     }
 
     /**
@@ -130,7 +150,6 @@ class ArticleController extends Controller
         $comment = $commentaire->getCommentaire();
         $commentaire->setUtilisateur($user)
                     ->setDate(date("d-m-Y"))
-                    ->setNombredeJaime(0)
                     ->setArticle($article)
                     ->setCommentaire($comment);
 

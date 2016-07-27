@@ -37,7 +37,7 @@
     <div class="foot col-row">
 
       <div class="col-md-4">
-        <p><a href="#"><i class="fa fa-thumbs-o-up"></i> </a>{{ article.nombredeJaime }} Like</p>
+        <p><a href="{{ path('like_article',{'id':article.id}) }}"><i class="fa fa-thumbs-o-up"></i> Like</p></a>
       </div>
 
       <div class="col-md-8 text-right">
