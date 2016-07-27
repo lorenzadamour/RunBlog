@@ -37,7 +37,13 @@
     <div class="foot col-row">
 
       <div class="col-md-4">
-        <p><a href="{{ path('like_article',{'id':article.id}) }}"><i class="fa fa-thumbs-o-up"></i> Like</p></a>
+        <p><a href="{{ path('like_article',{'id':article.id}) }}"><i class="fa fa-thumbs-o-up"></i>
+         {% set like = 0 %}
+         {% for avis in article.avis %}
+         {% set like = like + avis.reaction %}
+         {% endfor %}
+         {{like}}
+         </p></a>
       </div>
 
       <div class="col-md-8 text-right">

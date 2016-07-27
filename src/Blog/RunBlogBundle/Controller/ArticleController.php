@@ -92,14 +92,18 @@ class ArticleController extends Controller
         $user = $this->getUser();
         $user->getId();
 
-        $avis = new Avis();
+        $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Avis');
+        $avis = $em->findBy(array('article' => $article ,'utilisateur' => $user));
+
+        var_dump($avis);
+        /*$avis = new Avis();
         $avis->setArticle($article)
              ->setUtilisateur($user)
              ->setReaction(1);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($avis);
-            $em->flush();
+            $em->flush();*/
 
             return $this->redirectToRoute('article_show', array('id' => $article->getId()));
 
@@ -116,6 +120,7 @@ class ArticleController extends Controller
         $article->getId();
         $user = $this->getUser();
         $user->getId();
+
 
         $avis = new Avis();
         $avis->setArticle($article)
