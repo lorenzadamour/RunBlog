@@ -54,12 +54,22 @@
     <!-- Comments Form -->
     <div class="well">
         <h4>Leave a Comment:</h4>
-        <form role="form">
-            <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-            </div>
-            <a href="commentaire/{{article.id}}/new"><button type="submit" class="btn btn-primary">Submit</button></a>
-        </form>
+          {{ form_start(form) }}
+
+
+ <div class="form-group">
+   {{ form_label(form.commentaire) }}
+   {{ form_widget(form.commentaire, {'attr': {'class':'form-control'}}) }}
+   {{ form_errors(form.commentaire) }}
+ </div>
+
+ <ul class="list-inline text-center">
+     <li>
+       <input type="submit" value="Ajouter" class="Ajouter"/>
+     </li>
+  {{ form_end(form) }}
+
+
     </div>
 
     <hr>
