@@ -34,7 +34,7 @@
     <!-- Post Content -->
     <p class="lead">{{ article.description }}</p>
 
-    <div class="foot col-row">
+    <div class="foot col-row col-md-12" style="padding-bottom:25%;padding-top:5%;">
 
       <div class="col-md-4">
         <p><a href="{{ path('like_article',{'id':article.id}) }}"><i class="fa fa-thumbs-o-up"></i>
@@ -58,7 +58,7 @@
     <!-- Blog Comments -->
 
     <!-- Comments Form -->
-    <div class="well">
+    <div class="well col-md-12">
         <h4>Laisser un commentaire :</h4>
           {{ form_start(form) }}
 
@@ -88,7 +88,7 @@
      {% for commentaire in article.commentaire %}
 
     <!-- Comment -->
-    <div class="row">
+    <div class="col-md-12">
     <div class="media">
       <div class="col-md-2 col-sm-1 col-lg-2">
         <a class="pull-left" href="#">
@@ -107,18 +107,18 @@
 {% if commentaire.utilisateur.id == app.user.id %}
 <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}">Modifier mon commentaire<a>
 {% endif %}
+<div class="col-md-4">
+  <p><a href="{{ path('like_commentaire',{'article':commentaire.article.id, 'commentaire':commentaire.id}) }}"><i class="fa fa-thumbs-o-up"></i>
+    {% set like = 0 %}
+    {% for avis in commentaire.avis %}
+    {% set like = like + avis.reaction %}
+    {% endfor %}
+    {{like}}
+  </p></a>
+</div>
+<hr>
 
         </div>
-    </div>
-    <hr>
-    <div class="col-md-4">
-      <p><a href="{{ path('like_commentaire',{'article':commentaire.article.id, 'commentaire':commentaire.id}) }}"><i class="fa fa-thumbs-o-up"></i>
-       {% set like = 0 %}
-       {% for avis in commentaire.avis %}
-       {% set like = like + avis.reaction %}
-       {% endfor %}
-       {{like}}
-       </p></a>
     </div>
   </div>
 
@@ -148,8 +148,10 @@
   {% endif %}
 
 </div>
+</div>
 
 
 
-  </div>
+
+
 {% endblock %}
