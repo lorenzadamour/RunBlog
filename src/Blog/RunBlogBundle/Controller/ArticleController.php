@@ -97,43 +97,46 @@ class ArticleController extends Controller
         $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Avis');
         $avis = $em->findBy(array('article' => $article ,'utilisateur' => $user));
 
-        var_dump($avis);
-        /*$avis = new Avis();
-        $avis->setArticle($article)
-             ->setUtilisateur($user)
-             ->setReaction(1);
+        if ($avis) {
+          return $this->redirectToRoute('article_show', array('id' => $article->getId()));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($avis);
-            $em->flush();*/
+        }else {
+          $avis = new Avis();
+          $avis->setArticle($article)
+               ->setUtilisateur($user)
+               ->setReaction(1);
 
-            return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($avis);
+          $em->flush();
+          return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+        }
 
     }
 
-    /**
-     * Like Article entity.
-     *
-     * @Route("/{id}/dislike", name="dislike_article")
-     * @Method({"GET", "POST"})
-     */
-    public function dislikeArticle(Article $article, Request $request)
+    public function likeComment(Article $article, Request $request)
     {
-        $article->getId();
+        $comment->getId();
         $user = $this->getUser();
         $user->getId();
 
+        $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Avis');
+        $avis = $em->findBy(array('comment' => $comment ,'utilisateur' => $user));
 
-        $avis = new Avis();
-        $avis->setArticle($article)
-             ->setUtilisateur($user)
-             ->setReaction(-1);
+        if ($avis) {
+          return $this->redirectToRoute('article_show', array('id' => $article->getId()));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($avis);
-            $em->flush();
+        }else {
+          $avis = new Avis();
+          $avis->setComment($comment)
+               ->setUtilisateur($user)
+               ->setReaction(1);
 
-            return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($avis);
+          $em->flush();
+          return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+        }
 
     }
 
