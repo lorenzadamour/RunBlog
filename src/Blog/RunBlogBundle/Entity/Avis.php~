@@ -129,4 +129,28 @@ class Avis
     {
         return $this->commentaire;
     }
+
+    /**
+     * Set article
+     *
+     * @param \Blog\RunBlogBundle\Entity\Article $article
+     *
+     * @return Avis
+     */
+    public function setArticle(\Blog\RunBlogBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Blog\RunBlogBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
 }

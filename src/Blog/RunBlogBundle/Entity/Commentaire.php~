@@ -22,9 +22,9 @@ class Commentaire
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="string", length=255)
      */
     private $date;
 
@@ -34,13 +34,6 @@ class Commentaire
      * @ORM\Column(name="commentaire", type="text")
      */
     private $commentaire;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nombreDeJaime", type="integer")
-     */
-    private $nombreDeJaime;
 
     /**
     * @ORM\ManyToOne(targetEntity="User", inversedBy="commentaire")
@@ -81,7 +74,7 @@ class Commentaire
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param string $date
      *
      * @return Commentaire
      */
@@ -95,7 +88,7 @@ class Commentaire
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
@@ -124,30 +117,6 @@ class Commentaire
     public function getCommentaire()
     {
         return $this->commentaire;
-    }
-
-    /**
-     * Set nombreDeJaime
-     *
-     * @param integer $nombreDeJaime
-     *
-     * @return Commentaire
-     */
-    public function setNombreDeJaime($nombreDeJaime)
-    {
-        $this->nombreDeJaime = $nombreDeJaime;
-
-        return $this;
-    }
-
-    /**
-     * Get nombreDeJaime
-     *
-     * @return integer
-     */
-    public function getNombreDeJaime()
-    {
-        return $this->nombreDeJaime;
     }
 
     /**

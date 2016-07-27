@@ -61,11 +61,13 @@ class ArticleController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->getUser();
+        $user->getId();
         $article = new Article();
         $form = $this->createForm('Blog\RunBlogBundle\Form\ArticleType', $article);
         $form->handleRequest($request);
         $article->setDate(date("d-m-Y"))
-                ->setNombredeJaime(0);
+                ->setUtilisateur($user);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
