@@ -78,13 +78,6 @@ class Article
     private $public;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="NombredeJaime", type="integer")
-     */
-    private $nombredeJaime;
-
-    /**
     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
     */
     private $commentaire;
@@ -93,6 +86,12 @@ class Article
     * @ORM\OneToMany(targetEntity="Avis", mappedBy="article")
     */
     private $avis;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="article")
+    * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
+    */
+    private $utilisateur;
 
 
     /**
@@ -235,30 +234,6 @@ class Article
     }
 
     /**
-     * Set nombredeJaime
-     *
-     * @param integer $nombredeJaime
-     *
-     * @return Article
-     */
-    public function setNombredeJaime($nombredeJaime)
-    {
-        $this->nombredeJaime = $nombredeJaime;
-
-        return $this;
-    }
-
-    /**
-     * Get nombredeJaime
-     *
-     * @return integer
-     */
-    public function getNombredeJaime()
-    {
-        return $this->nombredeJaime;
-    }
-
-    /**
      * Add commentaire
      *
      * @param \Blog\RunBlogBundle\Entity\Commentaire $commentaire
@@ -346,5 +321,39 @@ class Article
     public function getPublic()
     {
         return $this->public;
+    }
+
+    /**
+     * Add avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     *
+     * @return Article
+     */
+    public function addAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis[] = $avi;
+
+        return $this;
+    }
+
+    /**
+     * Remove avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     */
+    public function removeAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis->removeElement($avi);
+    }
+
+    /**
+     * Get avis
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvis()
+    {
+        return $this->avis;
     }
 }

@@ -74,6 +74,11 @@ class User extends BaseUser
     private $commentaire;
 
     /**
+    * @ORM\OneToMany(targetEntity="Article", mappedBy="utilisateur")
+    */
+    private $article;
+
+    /**
     * @ORM\OneToMany(targetEntity="Avis", mappedBy="utilisateur")
     */
     private $avis;
@@ -296,5 +301,39 @@ class User extends BaseUser
     public function getAvis()
     {
         return $this->avis;
+    }
+
+    /**
+     * Add article
+     *
+     * @param \Blog\RunBlogBundle\Entity\Article $article
+     *
+     * @return User
+     */
+    public function addArticle(\Blog\RunBlogBundle\Entity\Article $article)
+    {
+        $this->article[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \Blog\RunBlogBundle\Entity\Article $article
+     */
+    public function removeArticle(\Blog\RunBlogBundle\Entity\Article $article)
+    {
+        $this->article->removeElement($article);
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

@@ -14,15 +14,12 @@
     <!-- Title -->
     <h1 style="color:black;font-weight:bolder;">{{ article.titre }}</h1>
 
-    <!-- Author -->
-    <p class="lead">
-        by <a href="#"></a>
-    </p>
+
 
     <hr>
+    <!-- Author -->
+    <p>Postée par <strong> {{ article.utilisateur.username}} </strong> le {{ article.date|date('l jS \of F Y A') }} </p>
 
-    <!-- Date/Time -->
-    <p><span class="glyphicon glyphicon-time"></span>Postée le {{ article.date }}</p>
 
     <hr>
 
@@ -53,7 +50,7 @@
 
     <!-- Comments Form -->
     <div class="well">
-        <h4>Leave a Comment:</h4>
+        <h4>Laisser un commentaire :</h4>
           {{ form_start(form) }}
 
 

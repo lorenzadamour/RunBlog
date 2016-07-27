@@ -14,8 +14,6 @@
                 <th>Imagename</th>
                 <th>Updatedat</th>
                 <th>Public</th>
-                <th>Nombredejaime</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +26,6 @@
                 <td>{{ article.imageName }}</td>
                 <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ article.public }}</td>
-                <td>{{ article.nombredeJaime }}</td>
             </tr>
         {% endfor %}
         </tbody>

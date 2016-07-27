@@ -87,6 +87,12 @@ class Article
     */
     private $avis;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="article")
+    * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
+    */
+    private $utilisateur;
+
 
     /**
      * Constructor
@@ -349,5 +355,29 @@ class Article
     public function getAvis()
     {
         return $this->avis;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \Blog\RunBlogBundle\Entity\User $utilisateur
+     *
+     * @return Article
+     */
+    public function setUtilisateur(\Blog\RunBlogBundle\Entity\User $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \Blog\RunBlogBundle\Entity\User
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }
