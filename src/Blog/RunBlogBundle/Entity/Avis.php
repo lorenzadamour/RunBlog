@@ -41,6 +41,12 @@ class Avis
     protected $commentaire;
 
     /**
+    * @ORM\ManyToOne(targetEntity="Article", inversedBy="avis")
+    * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+    */
+    protected $article;
+
+    /**
      * Get id
      *
      * @return int
@@ -122,5 +128,29 @@ class Avis
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \Blog\RunBlogBundle\Entity\Article $article
+     *
+     * @return Avis
+     */
+    public function setArticle(\Blog\RunBlogBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Blog\RunBlogBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

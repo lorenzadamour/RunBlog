@@ -89,7 +89,10 @@ class Article
     */
     private $commentaire;
 
-
+    /**
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="article")
+    */
+    private $avis;
 
 
     /**
@@ -343,5 +346,39 @@ class Article
     public function getPublic()
     {
         return $this->public;
+    }
+
+    /**
+     * Add avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     *
+     * @return Article
+     */
+    public function addAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis[] = $avi;
+
+        return $this;
+    }
+
+    /**
+     * Remove avi
+     *
+     * @param \Blog\RunBlogBundle\Entity\Avis $avi
+     */
+    public function removeAvi(\Blog\RunBlogBundle\Entity\Avis $avi)
+    {
+        $this->avis->removeElement($avi);
+    }
+
+    /**
+     * Get avis
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvis()
+    {
+        return $this->avis;
     }
 }

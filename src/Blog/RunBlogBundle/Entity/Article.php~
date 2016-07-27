@@ -89,7 +89,10 @@ class Article
     */
     private $commentaire;
 
-
+    /**
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="article")
+    */
+    private $avis;
 
 
     /**
@@ -320,4 +323,28 @@ class Article
   return $this->imageFile;
     }
 
+
+    /**
+     * Set public
+     *
+     * @param string $public
+     *
+     * @return Article
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return string
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
 }

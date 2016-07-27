@@ -58,7 +58,7 @@
             <div class="form-group">
                 <textarea class="form-control" rows="3"></textarea>
             </div>
-            <a href="{{ path ('commentaire_new' , {'id':article.id}) }}"><button type="submit" class="btn btn-primary">Submit</button></a>
+            <a href="commentaire/{{article.id}}/new"><button type="submit" class="btn btn-primary">Submit</button></a>
         </form>
     </div>
 
@@ -83,7 +83,7 @@
                 <small>{{commentaire.date|date('d-m-Y')}}</small>
             </h4>
 
-            {{commentaire.commentaire}}
+    {{commentaire.commentaire}}
 
 
 

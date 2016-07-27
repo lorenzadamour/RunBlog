@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Blog\RunBlogBundle\Entity\Article;
+use Blog\RunBlogBundle\Entity\Avis;
 use Blog\RunBlogBundle\Form\ArticleType;
 
 /**
@@ -66,6 +67,36 @@ class ArticleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
+            $em->flush();
+
+            return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+        }
+
+        return $this->render('article/new.html.twig', array(
+            'article' => $article,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Like Article entity.
+     *
+     * @Route("/{id}/like", name="like_article")
+     * @Method({"GET", "POST"})
+     */
+    public function likeArticle(Request $request)
+    {
+        $user = $this->getUser();
+        $user->getId();
+
+        $avis = new Avis();
+        $avis->setArticle($id)
+             ->setUtilisateur($user)
+             ->setReaction(1);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($avis);
             $em->flush();
 
             return $this->redirectToRoute('article_show', array('id' => $article->getId()));
