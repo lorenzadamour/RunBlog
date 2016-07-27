@@ -36,13 +36,6 @@ class Commentaire
     private $commentaire;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="nombreDeJaime", type="integer")
-     */
-    private $nombreDeJaime;
-
-    /**
     * @ORM\ManyToOne(targetEntity="User", inversedBy="commentaire")
     * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
     */
@@ -124,30 +117,6 @@ class Commentaire
     public function getCommentaire()
     {
         return $this->commentaire;
-    }
-
-    /**
-     * Set nombreDeJaime
-     *
-     * @param integer $nombreDeJaime
-     *
-     * @return Commentaire
-     */
-    public function setNombreDeJaime($nombreDeJaime)
-    {
-        $this->nombreDeJaime = $nombreDeJaime;
-
-        return $this;
-    }
-
-    /**
-     * Get nombreDeJaime
-     *
-     * @return integer
-     */
-    public function getNombreDeJaime()
-    {
-        return $this->nombreDeJaime;
     }
 
     /**

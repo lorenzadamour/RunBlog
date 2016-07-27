@@ -78,13 +78,6 @@ class Article
     private $public;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="NombredeJaime", type="integer")
-     */
-    private $nombredeJaime;
-
-    /**
     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
     */
     private $commentaire;
@@ -232,30 +225,6 @@ class Article
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set nombredeJaime
-     *
-     * @param integer $nombredeJaime
-     *
-     * @return Article
-     */
-    public function setNombredeJaime($nombredeJaime)
-    {
-        $this->nombredeJaime = $nombredeJaime;
-
-        return $this;
-    }
-
-    /**
-     * Get nombredeJaime
-     *
-     * @return integer
-     */
-    public function getNombredeJaime()
-    {
-        return $this->nombredeJaime;
     }
 
     /**
