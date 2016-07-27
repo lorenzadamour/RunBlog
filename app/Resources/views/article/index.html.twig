@@ -2,38 +2,57 @@
 {% include "base.html.twig" %}
 
 {% block body %}
-    <h1>Article list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Imagename</th>
-                <th>Updatedat</th>
-                <th>Public</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
-                <td>{{ article.titre }}</td>
-                <td>{{ article.date }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.imageName }}</td>
-                <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ article.public }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<style>
 
-    <ul>
-        <li>
-            <a href="{{ path('article_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+#articlehover:hover{
+  -webkit-transition: 0.7s;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+#articlehover{
+  max-height: 2%;
+}
+</style>
+
+
+
+
+
+    <div class="container" style="background-color:white;">
+      <h1 style="color:black;">Les derniers articles</h1>
+
+      <hr style="margin-top: 5px;margin-bottom: 5px;">
+      {% for article in articles %}
+      <div class="row" id="articlehover">
+        <div class="col-sm-2" style="max-width:35%;"><a href="#" class="">
+          <a href="{{ path('article_show', { 'id': article.id }) }}">
+          <img src="/images/products/{{ article.imageName }}" class="img-responsive"></a>
+        </a>
+        </div>
+        <div class="col-sm-10">
+          <a href="{{ path('article_show', { 'id': article.id }) }}" style="text-decoration:none;color:black;">
+          <h3 class="title">{{ article.titre }}</h3>
+          <p>{{ article.description }}</p>
+          <p class="text-muted">Posté par <strong> {{ article.utilisateur}} </strong> le {{ article.date }} </p>
+        </a>
+
+        </div>
+      </div>
+      <hr style="margin-top: 5px;margin-bottom: 5px;">
+      {% endfor %}
+
+
+    </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {% endblock %}
