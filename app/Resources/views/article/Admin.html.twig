@@ -20,7 +20,15 @@
           <tr>
               <td><a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre }} </a> </td>
               <td>{{ article.date }}</td>
-              <td>{{ article.public }}</td>
+              <td><div class="btn-group btn-toggle" data-toggle="buttons">
+                  <label class="btn {% if article.public == 'oui' %}btn-primary{% endif %}">
+                      <input type="radio" name="options" value="option1" disabled> Publié
+                  </label>
+                  <label class="btn {% if article.public == 'non' %}btn-primary{% endif %}">
+                      <input type="radio" name="options" value="option2" disabled> Brouillon
+                  </label>
+              </div>
+            </td>
               <td>{{ article.nombredeJaime }}</td>
               <td>
                   <ul>
