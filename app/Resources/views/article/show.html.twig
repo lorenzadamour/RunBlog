@@ -24,9 +24,12 @@
     <hr>
 
     <!-- Preview Image -->
-    <img class="img-responsive" src="/images/products/{{ article.imageName }}" alt="image">
+    <div class="col-md-5">
 
-    <hr>
+      <img class="img img-responsive" src="/images/products/{{ article.imageName }}" alt="image">
+    </div>
+
+
 
     <!-- Post Content -->
     <p class="lead">{{ article.description }}</p>
@@ -55,14 +58,13 @@
 
 
  <div class="form-group">
-   {{ form_label(form.commentaire) }}
    {{ form_widget(form.commentaire, {'attr': {'class':'form-control'}}) }}
    {{ form_errors(form.commentaire) }}
  </div>
 
  <ul class="list-inline text-center">
      <li>
-       <input type="submit" value="Ajouter" class="Ajouter"/>
+       <input type="submit" value="Ajouter" class="btn btn-primary"/>
      </li>
   {{ form_end(form) }}
 
@@ -80,14 +82,14 @@
     <!-- Comment -->
     <div class="row">
     <div class="media">
-      <div class="col-md-2 col-sm-2 col-lg-2">
+      <div class="col-md-2 col-sm-1 col-lg-2">
         <a class="pull-left" href="#">
             <img class="img img-responsive" src="/images/products/{{ commentaire.utilisateur.imageName }}" alt="img" >
         </a>
       </div>
         <div class="media-body">
             <h4 class="media-heading" style="font-weight:bolder;">{{commentaire.utilisateur.username}}
-                <small>{{commentaire.date|date('d-m-Y')}}</small>
+                <small>{{commentaire.date|date('d/m/Y')}}</small>
             </h4>
 
     {{commentaire.commentaire}}
