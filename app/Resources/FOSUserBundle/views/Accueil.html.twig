@@ -1,0 +1,103 @@
+<div class="container">
+
+  <div class="col-md-12" style="margin-top:2%;">
+  {% for articles in article %}
+  <div class="col-md-3">
+
+        <img src="/images/products/{{ articles.imageName }}" alt="Chania" class="img img-responsive center-block">
+        <div class="carousel-caption">
+          <h3>{{ articles.titre| truncate(30, true, 'lire la suite...') }}</h3>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+</div>
+<div class="container">
+    <div id="carousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img alt="Bootstrap template" src="http://placehold.it/1200x400/b4d9a7/ffffff&text=Company Information">
+                <div class="carousel-caption">
+                    <h3>Company information</h3>
+                    <p>
+                        Founded in 1892 and headquartered in Fairfield, CT, General Electric Company (LSE; NYSE: GE)
+                        is a technology and financial services company.
+                        The company offers products and services ranging from aircraft engines,
+                        power generation, water processing, and household appliances, among others.
+                    </p>
+                </div>
+            </div>
+            {% for articles in article %}
+
+                <div class="item">
+                    <img src="/images/products/{{ articles.imageName }}" alt="Chania" class="img img-responsive center-block">
+                    <div class="carousel-caption">
+                        <div class="col-lg-12 text-center v-center" style="font-size: 39pt;">
+                            <a href="#">{{ articles.titre| truncate(30, true, 'lire la suite...') }}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+        <ul class="nav nav-pills nav-justified">
+          {% for articles in article %}
+            <li data-target="#carousel1" data-slide-to="0" class="active">
+                <a href="#">{{ articles.titre| truncate(30, true, ' ...') }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="/Content/font-awesome/css/font-awesome.min.css" />
+
+<style>
+
+#carousel1 .nav a small {
+    display: block;
+}
+#carousel1 .nav {
+    background: #eee;
+}
+.nav-justified > li > a {
+    border-radius: 0px;
+}
+.nav-pills > li[data-slide-to="0"].active a {
+    background-color: #b4d9a7;
+}
+.nav-pills > li[data-slide-to="1"].active a {
+    background-color: #4f77cb;
+}
+.nav-pills > li[data-slide-to="2"].active a {
+    background-color: #d11e4f;
+}
+</style>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('#carousel1').carousel({
+            interval: 2000
+        });
+
+        var clickEvent = false;
+
+        $('#carousel1').on('click', '.nav a', function () {
+            clickEvent = true;
+            $('.nav li').removeClass('active');
+            $(this).parent().addClass('active');
+        }).on('slid.bs.carousel', function (e) {
+            if (!clickEvent) {
+                var count = $('.nav').children().length - 1;
+                var current = $('.nav li.active');
+                current.removeClass('active').next().addClass('active');
+                var id = parseInt(current.data('slide-to'));
+                if (count == id) {
+                    $('.nav li').first().addClass('active');
+                }
+            }
+            clickEvent = false;
+        });
+    });
+</script>
