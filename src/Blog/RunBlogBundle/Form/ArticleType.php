@@ -17,12 +17,14 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
-            ->add('description')
-            ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
+            ->add('titre', null, array('label' => false,'attr' => array('placeholder' => "Titre de l'article ",)))
+            ->add('description', null, array('label' => false,'attr' => array('placeholder' => "Description de l'article",)))
+            ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => false))
             ->add('public')
             ->add('public', ChoiceType::class, array(
+              'label' => false,
               'choices' => array(
+                "publié l'article" => "publié l'article",
                 'oui' => 'oui',
                 'non' => 'non',
               )

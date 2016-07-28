@@ -173,15 +173,18 @@ class ArticleController extends Controller
         $form->handleRequest($request);
 
         $article->getId();
-        $user = $this->getUser();
-        $user->getId();
+        /*$user = $this->getUser();
+        $user->getId();*/
         $comment = $commentaire->getCommentaire();
-        $commentaire->setUtilisateur($user)
-                    ->setDate(date("d-m-Y"))
+        $commentaire->setDate(date("d-m-Y"))
                     ->setArticle($article)
                     ->setCommentaire($comment);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $user->getId();
+            $commentaire->setUtilisateur($user);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentaire);
             $em->flush();
