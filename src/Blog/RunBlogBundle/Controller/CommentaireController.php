@@ -27,13 +27,14 @@ class CommentaireController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        return $this->render('BlogRunBlogBundle:Default:index.html.twig');
+        /*$em = $this->getDoctrine()->getManager();
 
         $commentaires = $em->getRepository('BlogRunBlogBundle:Commentaire')->findAll();
 
         return $this->render('commentaire/index.html.twig', array(
             'commentaires' => $commentaires,
-        ));
+        ));*/
     }
 
     /**
@@ -151,15 +152,15 @@ class CommentaireController extends Controller
        public function aimerAction(){
          $em = $this->getDoctrine()->getManager();
 
-          $utilisateur = $this->getUser();
-          $utilisateur->getId();;
-          $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
-                            ->findby(array('utilisateur' => $utilisateur ));
+         $utilisateur = $this->getUser();
+         $utilisateur->getId();
+         $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
+                           ->findby(array('utilisateur' => $utilisateur ));
 
-          return $this->render('commentaire/cequiaime.html.twig', array(
+         return $this->render('commentaire/cequiaime.html.twig', array(
                'commentaire' => $commentaire,
                'utilisateurs' => $utilisateur,
-           ));
+         ));
 
        }
 
