@@ -18,12 +18,10 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <li><a href="{{ path('article_index') }}">ARTICLES</a></li>
-          <li><a href="#">GALERIE</a></li>
-          {% else %}
 
-          {% endif %}
+
+
         </ul>
 
         <ul class="nav navbar-nav navbar-right" >

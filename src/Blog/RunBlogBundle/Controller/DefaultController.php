@@ -13,7 +13,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
       $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Article');
-      $article = $em->findBy(array(), array('id' => 'desc'),4,0);
+      $article = $em->findBy(array(), array('id' => 'desc'),6,0);
 
       return $this->render('BlogRunBlogBundle:Default:index.html.twig', array(
             'article' => $article,
