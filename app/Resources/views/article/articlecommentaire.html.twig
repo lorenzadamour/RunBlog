@@ -1,0 +1,21 @@
+{% include "FOSUserBundle::layout.html.twig" %}
+{% include "base.html.twig" %}
+
+<h1>Liste des commentaires</h1>
+<div class="container">
+  <table class="table">
+      <thead>
+          <tr>
+
+          </tr>
+      </thead>
+      <tbody>
+{% for commentaire in commentaires %}
+<tr>
+
+<td>Vous avez posté le commentaire "{{commentaire.commentaire}}" sur l'article {{commentaire.article.titre}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>

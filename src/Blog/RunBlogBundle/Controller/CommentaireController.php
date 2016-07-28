@@ -10,6 +10,7 @@ use Blog\RunBlogBundle\Entity\User;
 use Blog\RunBlogBundle\Entity\Article;
 use Blog\RunBlogBundle\Entity\Commentaire;
 use Blog\RunBlogBundle\Form\CommentaireType;
+use Blog\RunBlogBundle\Entity\Avis;
 
 /**
  * Commentaire controller.
@@ -107,6 +108,61 @@ class CommentaireController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+    /**
+     *
+     * @Route("/{id}/liste", name="commentaire_user")
+     * @Method({"GET","POST"})
+     */
+
+     public function CommentAction(Commentaire $commentaire){
+
+       $utilisateur = $this->getUser();
+       $utilisateur->getId();
+       $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur]);
+       return $this->render('article/articlecommentaire.html.twig', array(
+            'commentaires' => $commentaire,
+        ));
+     }
+
+     /**
+      *
+      * @Route("/user/", name="commentaire_like")
+      * @Method({"GET","POST"})
+      */
+
+      public function avisAction(){
+        $utilisateur = $this->getUser();
+        $utilisateur->getId();
+        $avis = new Avis();
+        $commentaire = new Commentaire();
+        $avis = $this->getDoctrine()->getRepository(Avis::class)->findBy(['reaction'=> 1,
+                                                                         'utilisateur'=> $utilisateur]);
+        return $this->render('commentaire/autrecommentaire.html.twig', array(
+             'avis' => $avis,
+         ));
+      }
+
+      /**
+       *
+       * @Route("/lesjaimes/", name="commentaire_aime")
+       * @Method({"GET","POST"})
+       */
+       public function aimerAction(){
+         $em = $this->getDoctrine()->getManager();
+
+          $utilisateur = $this->getUser();
+          $utilisateur->getId();;
+          $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
+                            ->findby(array('utilisateur' => $utilisateur ));
+
+          return $this->render('commentaire/cequiaime.html.twig', array(
+               'commentaire' => $commentaire,
+               'utilisateurs' => $utilisateur,
+           ));
+
+       }
+
 
     /**
      * Deletes a Commentaire entity.
