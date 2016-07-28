@@ -1,14 +1,11 @@
 {% include "FOSUserBundle::layout.html.twig" %}
 {% include "base.html.twig" %}
 
+<div class="container tableau">
 <h1>Les utilisateur qui aime mes commentaires</h1>
-<div class="container">
+
   <table class="table">
-      <thead>
-          <tr>
-        
-          </tr>
-      </thead>
+
       <tbody>
 <tr>
 {% for commentaire in commentaire %}
@@ -24,4 +21,5 @@
 
 </tbody>
 </table>
+</div>
 </div>

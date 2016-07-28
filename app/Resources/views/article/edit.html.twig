@@ -12,25 +12,37 @@ textarea{
 }
 </style>
 {% block body %}
+<div class="container">
+  <div class="row">
+
+
+
+
     <h1>Modifier L'article </h1>
-    <div class="form text-center">
+    <div class="form" style="">
       {{ form_start(edit_form) }}
           {{ form_widget(edit_form) }}
 
+          <div class="col-md-6">
 
-          <input type="submit" class="btn-sm btn-primary text-center" value="Modifier" style="margin-bottom:2%;width:50%;"/>
+
+          <input type="submit" class="btn-sm btn-primary" value="Modifier" style="margin-bottom:2%;"/>
       {{ form_end(edit_form) }}
-
+</div>
+<div class="col-md-6">
       {{ form_start(delete_form) }}
-          <input type="submit" class="btn-sm btn-danger" value="Supprimer" style="width:50%;margin-bottom:2%;background-color: rgb(202, 30, 30);}">
+          <input type="submit" class="btn-sm btn-danger" value="Supprimer" style="margin-bottom:2%;background-color: rgb(202, 30, 30);}">
       {{ form_end(delete_form) }}
+</div>
 
-    <div class="row text-center">
+    <div class="text-center" style="margin-top:15vh;">
       <a href="{{ path('article_index') }}" style="text-decoration:none;">Retour à la liste</a>
     </div>
 
 
     </div>
+    </div>
+      </div>
 
 
 
