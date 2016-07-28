@@ -19,7 +19,7 @@
                 <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
                 <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ commentaire.commentaire }}</td>
-                <td>{{ commentaire.nombreDeJaime }}</td>
+
                 <td>
                     <ul>
                         <li>
@@ -37,7 +37,6 @@
 
     <ul>
         <li>
-            <a href="{{ path('commentaire_new') }}">Create a new entry</a>
         </li>
     </ul>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace Blog\RunBlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Commentaire
  *
