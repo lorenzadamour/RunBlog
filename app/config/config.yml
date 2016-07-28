@@ -72,10 +72,13 @@ fos_user:
     firewall_name: main
     user_class: Blog\RunBlogBundle\Entity\User
 # app/config/config.yml
-
+    profile:
+        form:
+            type: Blog\RunBlogBundle\Form\ProfileFormType
     registration:
         form:
             type: Blog\RunBlogBundle\Form\UserType
+
             # if you are using Symfony < 2.8 you should use the type name instead
             # type: app_user_registration
 # Twig Configuration
