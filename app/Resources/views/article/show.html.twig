@@ -51,13 +51,26 @@
 
       </div>
 
+      <hr>
     </div>
 
-    <hr>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <ul>
+            <li>
+                <a href="{{ path('article_edit', { 'id': article.id }) }}"><input class="btn btn-primary" type="submit" value="Editer l'article"></a>
+            </li>
+        </ul>
+      <hr>
+
+    {% endif %}
+
 
     <!-- Blog Comments -->
 
     <!-- Comments Form -->
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     <div class="well col-md-12">
         <h4>Laisser un commentaire :</h4>
           {{ form_start(form) }}
@@ -79,6 +92,7 @@
 
     </div>
 
+    {% endif %}
     <hr>
 
     <!-- Posted Comments -->
@@ -97,24 +111,29 @@
       </div>
         <div class="media-body">
             <h4 class="media-heading" style="font-weight:bolder;">{{commentaire.utilisateur.username}}
-                <small>{{commentaire.date|date('d/m/Y')}}</small>
+                <small>
+
+              {% if is_granted('ROLE_ADMIN') %} ADMINISTRATEUR {% endif %}
+                {{commentaire.date|date('d/m/Y')}}
+              </small>
             </h4>
 
             <div class="col-md-12">
                {{commentaire.commentaire}}
             </div>
-
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 {% if commentaire.utilisateur.id == app.user.id %}
 <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}">Modifier mon commentaire<a>
 {% endif %}
 <div class="col-md-4">
   <p><a href="{{ path('like_commentaire',{'article':commentaire.article.id, 'commentaire':commentaire.id}) }}"><i class="fa fa-thumbs-o-up"></i>
+{% endif %}
     {% set like = 0 %}
     {% for avis in commentaire.avis %}
     {% set like = like + avis.reaction %}
-    {% endfor %}
     {{like}}
   </p></a>
+  {% endfor %}
 </div>
 <hr>
 
@@ -122,30 +141,13 @@
     </div>
   </div>
 
+
     <!-- Comment -->
     {% endfor %}
 
 </div>
 <div class="col-md-4">
 
-
-  {% if is_granted('ROLE_ADMIN') %}
-
-      <ul>
-          <li>
-            <a href="{{ path('allarticle_index') }}"> Voir les articles </a>
-          </li>
-          <li>
-              <a href="{{ path('article_edit', { 'id': article.id }) }}">Editer l'article</a>
-          </li>
-          <li>
-              {{ form_start(delete_form) }}
-                  <input class="btn btn-primary" type="submit" value="Supprimer l'article">
-              {{ form_end(delete_form) }}
-          </li>
-      </ul>
-
-  {% endif %}
 
 </div>
 </div>
