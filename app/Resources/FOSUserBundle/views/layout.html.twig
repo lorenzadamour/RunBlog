@@ -21,7 +21,6 @@
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <li><a href="{{ path('article_index') }}">ARTICLES</a></li>
           <li><a href="#">GALERIE</a></li>
-          <li><a href="{{ path('commentaire_user', {'id':app.user.id}) }}">Mes commentaires</a></li>
           {% else %}
 
           {% endif %}
@@ -43,20 +42,6 @@
         {% endif %}
       </li>
 
-      <!-- PARTIE ADMIN -->
-      {% if is_granted('ROLE_ADMIN') %}
-
-        <li class="nav-item">
-            <a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" id="admin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ path('article_new') }}">Créer un article</a></li>
-              <li><a href="{{ path('allarticle_index') }}">Voir les articles crées </a></li>
-            </ul>
-          </li>
-
-       {% endif %}
-
-       <!-- FIN PARTIE ADMIN -->
 
       <li class="nav-item">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -64,6 +49,17 @@
           <ul class="dropdown-menu">
             <li><a href="{{ path('fos_user_profile_show') }}">Voir profil</a></li>
             <li><a href="{{ path('fos_user_profile_edit') }}">Modifier Profil</a></li>
+            <li><a href="{{ path('commentaire_user', {'id':app.user.id}) }}">Mes commentaires</a></li>
+            <!-- PARTIE ADMIN -->
+            {% if is_granted('ROLE_ADMIN') %}
+                  <li><a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle text-center" id="admin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a></li>
+                    <li class=""><a href="{{ path('article_new') }}">Créer un article</a></li>
+                    <li class=""><a href="{{ path('allarticle_index') }}">Voir les articles crées </a></li>
+
+
+
+                  {% endif %}
+             <!-- FIN PARTIE ADMIN -->
           </ul>
 
 

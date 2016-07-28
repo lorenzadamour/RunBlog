@@ -53,6 +53,16 @@ class ArticleController extends Controller
         ));
     }
 
+
+     /*public function aimerAction(){
+       $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Article');
+       $article = $em->findBy(array(), array('date' => 'desc'),3,0);
+
+       return $this->render('commentaire/cequiaime.html.twig', array(
+             'article' => $article,
+       ));
+     }*/
+
     /**
      * Creates a new Article entity.
      *
@@ -85,25 +95,24 @@ class ArticleController extends Controller
     /**
      * Like Article entity.
      *
-     * @Route("/{id}/like", name="like_article")
+     * @Route("/{id}/likearticle", name="like_article")
      * @Method({"GET", "POST"})
      */
-    public function likeArticle(Article $article, Commentaire $commentaire, Request $request)
+    public function likeArticle(Article $article, Request $request)
     {
         $article->getId();
-        $commentaire->getId();
         $user = $this->getUser();
         $user->getId();
 
         $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Avis');
-        $avis = $em->findBy(array('commentaire' => $commentaire ,'utilisateur' => $user));
+        $avis = $em->findBy(array('article' => $article ,'utilisateur' => $user));
 
         if ($avis) {
           return $this->redirectToRoute('article_show', array('id' => $article->getId()));
 
         }else {
           $avis = new Avis();
-          $avis->setCommentaire($commentaire)
+          $avis->setArticle($article)
                ->setUtilisateur($user)
                ->setReaction(1);
 
@@ -163,15 +172,18 @@ class ArticleController extends Controller
         $form->handleRequest($request);
 
         $article->getId();
-        $user = $this->getUser();
-        $user->getId();
+        /*$user = $this->getUser();
+        $user->getId();*/
         $comment = $commentaire->getCommentaire();
-        $commentaire->setUtilisateur($user)
-                    ->setDate(date("d-m-Y"))
+        $commentaire->setDate(date("d-m-Y"))
                     ->setArticle($article)
                     ->setCommentaire($comment);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $user->getId();
+            $commentaire->setUtilisateur($user);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentaire);
             $em->flush();
