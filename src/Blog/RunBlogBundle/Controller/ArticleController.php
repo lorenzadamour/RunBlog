@@ -53,6 +53,16 @@ class ArticleController extends Controller
         ));
     }
 
+
+     /*public function aimerAction(){
+       $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Article');
+       $article = $em->findBy(array(), array('date' => 'desc'),3,0);
+
+       return $this->render('commentaire/cequiaime.html.twig', array(
+             'article' => $article,
+       ));
+     }*/
+
     /**
      * Creates a new Article entity.
      *
