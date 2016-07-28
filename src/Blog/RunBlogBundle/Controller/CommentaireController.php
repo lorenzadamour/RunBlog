@@ -153,13 +153,10 @@ class CommentaireController extends Controller
 
          $avis = new Avis();
 
-         $commentaire = new Commentaire();
-
          $utilisateur = $this->getUser();
          $utilisateur->getId();;
-         $avis = $this->getDoctrine()->getRepository(Avis::class)->findBy(['commentaire.utilisateur.id'=> $utilisateur
-                                                                          ]);
-
+         $avis = $em->getRepository('BlogRunBlogBundle:Commentaire')->findby(array('user_id' => $utilisateurs), array('avis' => array('reaction' => 1)));
+         var_dump($avis);
          return $this->render('commentaire/cequiaime.html.twig', array(
               'avis' => $avis,
               'utilisateurs' => $utilisateur,
