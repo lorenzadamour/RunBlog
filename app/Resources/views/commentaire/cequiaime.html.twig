@@ -6,13 +6,21 @@
   <table class="table">
       <thead>
           <tr>
-              <th>Pseudo</th>
-              <th>Commentaire aimé</th>
+        
           </tr>
       </thead>
       <tbody>
 <tr>
-}
+{% for commentaire in commentaire %}
+{% for avis in commentaire.avis %}
+{% if avis.reaction == 1 %}
+
+
+<td>{{avis.utilisateur.username}} a aimé votre commentaire "{{avis.commentaire.commentaire}}" sur l'article {{avis.commentaire.article.titre}}</td>
+</tr>
+{% endif %}
+{% endfor %}
+{% endfor %}
 
 </tbody>
 </table>

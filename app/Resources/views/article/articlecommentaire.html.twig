@@ -6,15 +6,14 @@
   <table class="table">
       <thead>
           <tr>
-              <th>Titre de l'article</th>
-              <th>Mon commentaire</th>
+
           </tr>
       </thead>
       <tbody>
 {% for commentaire in commentaires %}
 <tr>
-<td>{{commentaire.article.titre}}</td>
-<td>{{commentaire.commentaire}}</td>
+
+<td>Vous avez posté le commentaire "{{commentaire.commentaire}}" sur l'article {{commentaire.article.titre}}</td>
 </tr>
 {% endfor %}
 </tbody>
