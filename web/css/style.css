@@ -44,3 +44,8 @@ input:-webkit-autofill {
 .navbar {
      border-radius: 0px;
 }
+
+.dropdown-menu{
+  text-align: right;
+
+}
