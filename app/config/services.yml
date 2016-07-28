@@ -7,17 +7,13 @@ services:
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:
-<<<<<<< HEAD
             - { name: form.type, alias: app_user_registration }
 
     app.form.profile:
         class: Blog\BlogRunBlogBundle\Form\ProfileType
         tags:
             - { name: form.type, alias: app_user_profile }
-services:
-=======
-            - { name: form.type, alias: app_user_registration }      
->>>>>>> master
+
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         tags:
