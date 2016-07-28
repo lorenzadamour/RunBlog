@@ -112,15 +112,16 @@ class CommentaireController extends Controller
 
     /**
      *
-     * @Route("/{id}/liste", name="commentaire_user")
+     * @Route("/listecommentaire", name="commentaire_user")
      * @Method({"GET","POST"})
      */
-
-     public function CommentAction(Commentaire $commentaire){
+     public function CommentAction(){
 
        $utilisateur = $this->getUser();
        $utilisateur->getId();
-       $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur]);
+       $em = $this->getDoctrine()->getManager();
+       $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')->findAll(array('utilisateur'=>$utilisateur));
+       /*$commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur]);*/
        return $this->render('article/articlecommentaire.html.twig', array(
             'commentaires' => $commentaire,
         ));
