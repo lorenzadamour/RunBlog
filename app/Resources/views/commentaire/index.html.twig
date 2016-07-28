@@ -9,7 +9,6 @@
                 <th>Id</th>
                 <th>Date</th>
                 <th>Commentaire</th>
-                <th>Nombredejaime</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,7 +18,6 @@
                 <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
                 <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ commentaire.commentaire }}</td>
-                <td>{{ commentaire.nombreDeJaime }}</td>
                 <td>
                     <ul>
                         <li>
