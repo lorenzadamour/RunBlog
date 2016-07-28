@@ -6,14 +6,15 @@
   <table class="table">
       <thead>
           <tr>
-              <th>Commentaires</th>
+          
           </tr>
       </thead>
       <tbody>
 {% for avis in avis %}
 <tr>
 
-<td>{{avis.commentaire.commentaire}}</td>
+
+<td>Vous avez aimé le commentaire "{{avis.commentaire.commentaire}}" posté par {{avis.commentaire.utilisateur.username}} sur l'article {{avis.commentaire.article.titre}} </td>
 
 <tr>
 {% endfor %}

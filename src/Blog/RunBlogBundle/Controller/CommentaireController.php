@@ -127,7 +127,7 @@ class CommentaireController extends Controller
 
      /**
       *
-      * @Route("/user/", name="commentaire_suivre")
+      * @Route("/user/", name="commentaire_like")
       * @Method({"GET","POST"})
       */
 
@@ -148,22 +148,18 @@ class CommentaireController extends Controller
        * @Route("/lesjaimes/", name="commentaire_aime")
        * @Method({"GET","POST"})
        */
-
        public function aimerAction(){
+         $em = $this->getDoctrine()->getManager();
 
-         $avis = new Avis();
+          $utilisateur = $this->getUser();
+          $utilisateur->getId();;
+          $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
+                            ->findby(array('utilisateur' => $utilisateur ));
 
-         $commentaire = new Commentaire();
-
-         $utilisateur = $this->getUser();
-         $utilisateur->getId();;
-         $avis = $this->getDoctrine()->getRepository(Avis::class)->findBy(['commentaire.utilisateur.id'=> $utilisateur
-                                                                          ]);
-
-         return $this->render('commentaire/cequiaime.html.twig', array(
-              'avis' => $avis,
-              'utilisateurs' => $utilisateur,
-          ));
+          return $this->render('commentaire/cequiaime.html.twig', array(
+               'commentaire' => $commentaire,
+               'utilisateurs' => $utilisateur,
+           ));
 
        }
 
