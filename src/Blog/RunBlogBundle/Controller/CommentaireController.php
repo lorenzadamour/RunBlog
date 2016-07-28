@@ -112,7 +112,7 @@ class CommentaireController extends Controller
 
     /**
      *
-     * @Route("/listecommentaire", name="commentaire_user")
+     * @Route("/listecommentaire/", name="commentaire_user")
      * @Method({"GET","POST"})
      */
      public function CommentAction(){
