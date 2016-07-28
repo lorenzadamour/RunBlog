@@ -127,14 +127,14 @@
 {% endif %}
 <div class="col-md-4">
   <p><a href="{{ path('like_commentaire',{'article':commentaire.article.id, 'commentaire':commentaire.id}) }}"><i class="fa fa-thumbs-o-up"></i>
-{% endif %}
-    {% set likeComment = 0 %}
-    {% for avis in article.avis %}
-    {% set likeComment = likeComment + avis.reaction %}
-    {% endfor %}
-    {{likeComment}}
-  </p></a>
+   {% set like = 0 %}
+   {% for avis in commentaire.avis %}
+   {% set like = like + avis.reaction %}
+   {% endfor %}
+   {{like}}
+   </p></a>
 </div>
+
 <hr>
 
         </div>
@@ -143,7 +143,6 @@
 
 
     <!-- Comment -->
-    {% endfor %}
 
 </div>
 <div class="col-md-4">
@@ -151,6 +150,8 @@
 
 </div>
 </div>
+{% endif %}
+{% endfor %}
 
 
 
