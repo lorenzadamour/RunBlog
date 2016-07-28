@@ -1,8 +1,23 @@
-{% extends 'base.html.twig' %}
+{% include "FOSUserBundle::layout.html.twig" %}
+{% include 'base.html.twig' %}
+<style>
 
+textarea{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+input{
+  margin-bottom: 2%;
+}
+
+button{
+  margin-top: 2%;
+}
+</style>
 {% block body %}
-    <h1>Article creation</h1>
     <div class="form">
+      <h1>Créer un article</h1>
       {{ form_start(form) }}
           {{ form_widget(form) }}
           <button type="submit" class="button button-block"/>Creer</button>

@@ -33,7 +33,7 @@
         <div class="col-sm-10">
           <a href="{{ path('article_show', { 'id': article.id }) }}" style="text-decoration:none;color:black;">
           <h3 class="title">{{ article.titre }}</h3>
-          <p>{{ article.description }}</p>
+          <p>{{ article.description | truncate(70, true, 'lire la suite...')  }}</p>
           <p class="text-muted">Posté par <strong> {{ article.utilisateur}} </strong> le {{ article.date }} </p>
         </a>
 

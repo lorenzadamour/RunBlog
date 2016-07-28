@@ -19,7 +19,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('titre', null, array('label' => false,'attr' => array('placeholder' => "Titre de l'article ",)))
             ->add('description', null, array('label' => false,'attr' => array('placeholder' => "Description de l'article",)))
-            ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
+            ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => false))
             ->add('public')
             ->add('public', ChoiceType::class, array(
               'label' => false,

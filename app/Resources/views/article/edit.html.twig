@@ -1,21 +1,38 @@
-{% include "base.html.twig" %}
+{% include "FOSUserBundle::layout.html.twig" %}
+{% include 'base.html.twig' %}
 
+<style>
+label{
+  color: transparent;
+}
+
+textarea{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+</style>
 {% block body %}
-    <h1>Article edit</h1>
+    <h1>Modifier L'article </h1>
+    <div class="form text-center">
+      {{ form_start(edit_form) }}
+          {{ form_widget(edit_form) }}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+          <input type="submit" class="btn-sm btn-primary text-center" value="Modifier" style="margin-bottom:2%;width:50%;"/>
+      {{ form_end(edit_form) }}
+
+      {{ form_start(delete_form) }}
+          <input type="submit" class="btn-sm btn-danger" value="Supprimer" style="width:50%;margin-bottom:2%;background-color: rgb(202, 30, 30);}">
+      {{ form_end(delete_form) }}
+
+    <div class="row text-center">
+      <a href="{{ path('article_index') }}" style="text-decoration:none;">Retour à la liste</a>
+    </div>
+
+
+    </div>
+
+
+
+
 {% endblock %}
