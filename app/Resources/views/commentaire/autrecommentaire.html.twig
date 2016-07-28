@@ -1,0 +1,22 @@
+{% include "FOSUserBundle::layout.html.twig" %}
+{% include "base.html.twig" %}
+
+<h1>Commentaires que j'ai likés</h1>
+<div class="container">
+  <table class="table">
+      <thead>
+          <tr>
+              <th>Commentaires</th>
+          </tr>
+      </thead>
+      <tbody>
+{% for avis in avis %}
+<tr>
+
+<td>{{avis.commentaire.commentaire}}</td>
+
+<tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
