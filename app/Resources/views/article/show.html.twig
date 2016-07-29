@@ -52,7 +52,12 @@
       </div>
 
       <hr>
+      <div class="fb-like" data-href="http://runblog.simplonreunion.co/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
     </div>
+
+
+
+
 
 
     {% if is_granted('ROLE_ADMIN') %}
@@ -106,7 +111,7 @@
     <div class="media">
       <div class="col-md-2 col-sm-1 col-lg-2">
         <a class="pull-left" href="#">
-            <img class="img img-responsive" src="/images/products/{{ commentaire.utilisateur.imageName }}" alt="img" >
+            <img class="img img-responsive" src="/images/products/{{ commentaire.utilisateur.imageName }}" alt="img" style="max-height:75px">
         </a>
       </div>
         <div class="media-body">
@@ -152,7 +157,14 @@
 
 </div>
 </div>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 
