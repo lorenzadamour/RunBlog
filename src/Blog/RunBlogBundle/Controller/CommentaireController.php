@@ -147,7 +147,7 @@ class CommentaireController extends Controller
      * @Route("/admin/{id}/edit", name="admincommentaire_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Commentaire $commentaire)
+    public function editAdmin(Request $request, Commentaire $commentaire)
     {
 
 

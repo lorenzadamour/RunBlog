@@ -12,18 +12,19 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Titre</th>
-        <th>Date</th>
-        <th>Publié</th>
-        <th>j'aime(s)</th>
-        <th>Actions</th>
+        <th >Titre</th>
+        <th class="text-center">Date</th>
+        <th class="text-center">Publié</th>
+        <th class="text-center">J'aime(s)</th>
+        <th class="text-center">Commentaire</th>
+        <th class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
       {% for article in articles %}
           <tr>
               <td><a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre }} </a> </td>
-              <td>{{ article.date }}</td>
+              <td class="text-center">{{ article.date }}</td>
               <td><div class="btn-group btn-toggle" data-toggle="buttons">
                   <label class="btn {% if article.public == 'oui' %}btn-primary{% endif %}">
                       <input type="radio" name="options" value="option1" disabled> Publié
@@ -32,6 +33,26 @@
                       <input type="radio" name="options" value="option2" disabled> Brouillon
                   </label>
               </div>
+            </td>
+            <td class="text-center">
+              <p><i class="fa fa-thumbs-o-up"></i>
+              {% set like = 0 %}
+              {% for avis in article.avis %}
+              {% set like = like + avis.reaction %}
+              {% endfor %}
+              {{like}}
+               </p>
+
+            </td>
+            <td class="text-center">
+              <p>
+              {% set nombercomment = 0 %}
+              {% for commentaire in article.commentaire %}
+              {% set nombercomment = nombercomment + 1 %}
+              {% endfor %}
+              {{nombercomment}}
+               </p>
+
             </td>
               <td>
                   <ul>

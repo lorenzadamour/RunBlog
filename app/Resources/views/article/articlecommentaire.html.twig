@@ -12,8 +12,21 @@
         {% for commentaire in commentaires %}
         <tr>
 
-          <td>Vous avez posté le commentaire "{{commentaire.commentaire}}" sur l'article {{commentaire.article.titre}}</td>
+            <td>
+              Vous avez posté le commentaire "{{commentaire.commentaire| truncate(30, true, ' ...')}}" sur l'article {{commentaire.article.titre}}
+
+              <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}"><i class="fa fa-edit"></i><a>
+
+              <a href="{{ path('commentaire_delete' , {'id': commentaire.id }) }}"><i class="fa fa-remove"></i><a>
+
+
+            </td>
+
+
+
+
         </tr>
+
       {% endfor %}
     </tbody>
   </table>
