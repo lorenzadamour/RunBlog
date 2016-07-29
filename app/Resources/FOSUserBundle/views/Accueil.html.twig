@@ -1,41 +1,48 @@
-<div class="container">
-        <div class="row">
-            <div class="span12">
-                <div class="well" style="border: 5px solid rgba(0, 0, 0, 0.7);">
-                    <div id="myCarousel" class="carousel fdi-Carousel slide">
-                     <!-- Carousel items -->
-                        <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
-                            <div class="carousel-inner onebyone-carosel" style="border: 5px solid rgba(0, 0, 0, 0.7);">
-                                <div class="item active">
-                                    <div class="col-md-12">
-                                        <a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block" style="max-width: 500px;max-height: 222px;"></a>
-                                        <div class="text-center">1</div>
-                                    </div>
-                                </div>
+<style media="screen">
+h1{
+  color: black;
+}
+.cadre {
+    box-shadow: 1px 1px 8px #555;
+    /* height: 300px; */
+    width: 220px;
+    /* max-width: 80%; */
+    /* max-height: 69%; */
+}
+.cadre:hover{
+    box-shadow: 3px 3px 16px #555 ;
+}
+</style>
 
-                                {% for articles in article %}
-                                <div class="item">
-                                    <div class="col-md-12 hovereffect">
-                                        <a href="{{ path('article_show', { 'id': articles.id }) }}" style="text-decoration:none;color:white;"><img src="/images/products/{{ articles.imageName }}" class="img-responsive center-block" style="max-width: 500px;max-height: 222px;"></a>
-                                        <div class="text-center" style="color:white;">{{ articles.titre| truncate(60, true, 'lire la suite...') }}</div>
-                                    </div>
-                                </div>
-                                {% endfor %}
+<div class="container tableau">
 
-                            </div>
-                            <a class="left carousel-control vcenter"  href="#eventCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                            <a class="right carousel-control vcenter" href="#eventCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-                        </div>
-                        <!--/carousel-inner-->
-                    </div><!--/myCarousel-->
-                </div><!--/well-->
+
+
+
+
+
+
+  <div class="col-md-12 text-center">
+    <img class="text-center" src="/img/runblog.png" class="img-responsive">
+    <h1>Nos derniers articles </h1>
+  </div>
+  <div class="col-md-12">
+    <hr>
+  </div>
+        <div class="col-md-12 text-center">
+        {% for articles in article %}
+            <div class="col-md-3" style="text-align: -webkit-center;">
+              <div class="cadre">
+                <a href="{{ path('article_show', { 'id': articles.id }) }}" style="text-decoration:none;color:white;">
+                  <img src="/images/products/{{ articles.imageName }}" class="img-responsive">
+                  <div class="text-center" style="color:black;">{{ articles.titre| truncate(60, true, 'lire la suite...') }}</div>
+                </a>
+              </div>
             </div>
+          {% endfor %}
         </div>
-        <div class="row">
-          <h1>BIENVENUE SUR NOTRE SITE</h1>
 
-        </div>
-    </div>
+      </div>
 
     <style media="screen">
     .vcenter {

@@ -25,7 +25,7 @@
 
     <hr>
     <!-- Author -->
-    <p>Posté par <strong> {{ article.utilisateur.username}} </strong> le {{ article.date }} </p>
+    <p>Posté par <strong> {{ article.utilisateur.username}} </strong> le {{ article.date|date('d/m/Y') }} </p>
 
 
     <hr>
@@ -54,12 +54,20 @@
       </div>
 
       <div class="col-md-8 text-right">
-        <p>Mise à jour le {% if article.updatedAt %}{{ article.updatedAt|date('d-m-Y') }} à {{ article.updatedAt|date('H:i') }} {% endif %} </p>
+        <p>Mise à jour le {% if article.updatedAt %}{{ article.updatedAt|date('d/m/Y') }} à {{ article.updatedAt|date('H:i') }} {% endif %} </p>
 
       </div>
 
       <hr>
       <div class="fb-like" data-href="http://runblog.simplonreunion.co/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+      <hr>
+      {% if is_granted('ROLE_ADMIN') %}
+      <div class="col-md-12 text-center">
+            <a href="{{ path('article_edit', { 'id': article.id }) }}"><input class="btn btn-primary" type="submit" value="Editer l'article"></a>
+      </div>
+          <hr>
+      {% endif %}
+
     </div>
 
 
@@ -67,16 +75,7 @@
 
 
 
-    {% if is_granted('ROLE_ADMIN') %}
 
-        <ul>
-            <li>
-                <a href="{{ path('article_edit', { 'id': article.id }) }}"><input class="btn btn-primary" type="submit" value="Editer l'article"></a>
-            </li>
-        </ul>
-
-        <hr>
-    {% endif %}
 
 
     <!-- Blog Comments -->
@@ -124,9 +123,7 @@
         <div class="media-body">
             <h4 class="media-heading" style="font-weight:bolder;">{{commentaire.utilisateur.username}}
                 <small>
-
-              {% if is_granted('ROLE_ADMIN') %} ADMINISTRATEUR {% endif %}
-                {{commentaire.date|date('d/m/Y')}}
+                {{commentaire.date|date('d/m/Y h:i:s')}}
               </small>
             </h4>
 
