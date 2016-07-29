@@ -24,7 +24,6 @@ class ArticleType extends AbstractType
             ->add('public', ChoiceType::class, array(
               'label' => false,
               'choices' => array(
-                "publié l'article" => "publié l'article",
                 'oui' => 'oui',
                 'non' => 'non',
               )

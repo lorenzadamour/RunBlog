@@ -4,7 +4,11 @@
 
 
 <div class="container tableau">
-  <h2>Liste d'article</h2>
+  <div class="col-md-12 text-center">
+    <h2>Liste d'article crée</h2>
+
+
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -40,8 +44,7 @@
       {% endfor %}
     </tbody>
   </table>
-  <div class="col-md-12 text-center">
+  <div class="tableau text-center">
     <a href="{{ path('article_new') }}"><button class="btn btn-primary" type="button" name="button"> <i class="fa fa-plus"></i> Nouvel Article</button></a>
-
   </div>
 </div>
