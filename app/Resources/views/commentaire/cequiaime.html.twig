@@ -1,7 +1,17 @@
 {% include "FOSUserBundle::layout.html.twig" %}
 {% include "base.html.twig" %}
 
-<div class="container tableau">
+<div class="container">
+<div class="row">
+<div class="form col-md-4" style="background-color:white;">
+    <ul>
+        <li style="list-style:none;"><a href="#" class="btn btn-primary">Tout</a></li>
+        <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="btn btn-primary">Posté</a></li>
+        <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="btn btn-primary" >J'aime reçus</a></li>
+        <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="btn btn-primary" >J'aime postés</a></li>
+    </ul>
+</div>
+<div class="form col-md-offset-2 col-md-6" style="padding-bottom=5px; background-color:white;">
 <h1 style="color:black;">Les utilisateurs qui aiment mes commentaires</h1>
 
   <table class="table">
@@ -13,7 +23,7 @@
 {% if avis.reaction == 1 %}
 
 
-<td>{{avis.utilisateur.username}} a aimé votre commentaire "{{avis.commentaire.commentaire| truncate(30, true, ' ...')}}" sur l'article {{avis.commentaire.article.titre}}</td>
+<td><strong>{{avis.utilisateur.username}}</strong> a aimé votre commentaire "{{avis.commentaire.commentaire| truncate(30, true, ' ...')}}" sur l'article {{avis.commentaire.article.titre}}</td>
 </tr>
 {% endif %}
 {% endfor %}
@@ -21,5 +31,7 @@
 
 </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>

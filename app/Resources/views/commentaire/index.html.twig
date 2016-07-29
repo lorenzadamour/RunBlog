@@ -6,17 +6,17 @@
     <h1>Commentaire list</h1>
     <div class="row">
         <div class="col-md-12">
-        <div class="col-md-4" style="background-color:white;">
+        <div class="form col-md-4" style="background-color:white;">
             <ul>
-                <li><a href="#">Tout</a></li>
-                <li><a href="{{ path('commentaire_user') }}">Posté</a></li>
-                <li><a href="{{ path('commentaire_aime') }}">J'aime reçus</a></li>
-                <li><a href="{{ path('commentaire_like') }}">J'aime postés</a></li>
+                <li style="list-style:none;"><a href="#" class="btn btn-primary">Tout</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="btn btn-primary">Posté</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="btn btn-primary" >J'aime reçus</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="btn btn-primary" >J'aime postés</a></li>
             </ul>
         </div>
         <div class="col-md-offset-2 col-md-6">
             {% for commentaire in commentaires %}
-            <div style="padding-bottom=5px; background-color:white;">
+            <div class="form" style="padding-bottom=5px; background-color:white;">
                <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}"><h2 class="text-center" style="color:black">
                   {{commentaire.article.titre}}
                </h2></a>

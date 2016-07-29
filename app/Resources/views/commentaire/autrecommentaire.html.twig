@@ -1,17 +1,26 @@
 {% include "FOSUserBundle::layout.html.twig" %}
 {% include "base.html.twig" %}
 
+<div class="container">
+<div class="row">
+<div class="form col-md-4" style="background-color:white;">
+    <ul>
+        <li style="list-style:none;"><a href="#" class="btn btn-primary">Tout</a></li>
+        <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="btn btn-primary">Posté</a></li>
+        <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="btn btn-primary" >J'aime reçus</a></li>
+        <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="btn btn-primary" >J'aime postés</a></li>
+    </ul>
+</div>
+<div class="form col-md-offset-2 col-md-6" style="padding-bottom=5px; background-color:white;">
+<h1 style="color:black;">Commentaires que j'ai likés</h1>
+<table class="table">
+  <div class="container">
+    <thead>
+        <tr>
 
-<div class="container tableau">
-  <h1 style="color:black;">Commentaires que j'ai likés</h1>
-  <table class="table">
-    <div class="container">
-      <thead>
-          <tr>
-
-          </tr>
-      </thead>
-      <tbody>
+        </tr>
+    </thead>
+    <tbody>
 {% for avis in avis %}
 <tr>
 {% if avis.article == NULL %}
@@ -20,7 +29,9 @@
 {% endif %}
 <tr>
 {% endfor %}
-      </tbody>
-    </table>
-  </div>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
 </div>

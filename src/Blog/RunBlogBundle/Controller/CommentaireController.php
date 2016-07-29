@@ -193,7 +193,7 @@ class CommentaireController extends Controller
 
       /**
        *
-       * @Route("/lesjaimes/", name="commentaire_aime")
+       * @Route("/userlike/", name="commentaire_aime")
        * @Method({"GET","POST"})
        */
        public function aimerAction(){
