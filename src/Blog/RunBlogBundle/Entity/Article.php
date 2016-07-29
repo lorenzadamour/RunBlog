@@ -78,12 +78,12 @@ class Article
     private $public;
 
     /**
-    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article", cascade={"remove", "persist"}))
     */
     private $commentaire;
 
     /**
-    * @ORM\OneToMany(targetEntity="Avis", mappedBy="article")
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="article", cascade={"remove", "persist"}))
     */
     private $avis;
 
