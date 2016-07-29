@@ -127,7 +127,7 @@ class CommentaireController extends Controller
                 $em->persist($commentaire);
                 $em->flush();
 
-                return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+                return $this->redirectToRoute('commentaire_user');
               }
 
 
