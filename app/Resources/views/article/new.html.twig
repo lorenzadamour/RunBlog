@@ -22,14 +22,9 @@ button{
           {{ form_widget(form) }}
           <button type="submit" class="button button-block"/>Creer</button>
       {{ form_end(form) }}
-
+      <a href="{{ path('article_index') }}">Back to the list</a>
     </div>
 
 
 
-    <ul>
-        <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
