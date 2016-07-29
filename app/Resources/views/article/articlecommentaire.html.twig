@@ -3,32 +3,49 @@
 
 
 {% block body %}
+
+<style media="screen">
+.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  /* padding-bottom: 6%; */
+  margin-bottom: 4%;
+}
+
+.btn-admin {
+  color: #fff;
+  background-color: red;
+  border-color: #2e6da4;
+  /* padding-bottom: 6%; */
+  margin-bottom: 4%;
+}
+</style>
   <div class="container">
     <h1>Liste de tes commentaires</h1>
     <div class="row">
         <div class="col-md-12">
         <div class=" form col-md-4" style="background-color:white;">
             <ul>
-                <li style="list-style:none;"><a href="#" class="btn btn-primary">Posté</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="btn btn-primary" >J'aime reçus</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="btn btn-primary" >J'aime postés</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_index') }}" class="">GESTION COMMENTAIRES ADMIN</a></li>
+                <li style="list-style:none;"><a href="#" class="">Posté</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime reçus</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime postés</a></li>
             </ul>
         </div>
         <div class="col-md-offset-2 col-md-6">
             {% for commentaire in commentaires %}
             <div class="form" style="padding-bottom=5px; background-color:white;">
-               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}"><h2 class="text-center" style="color:black">
-                  {{commentaire.article.titre}}
-               </h2></a>
-            <p>
-              Commentaire de <strong>{{commentaire.utilisateur.username}}</strong></br>
-              {{ commentaire.commentaire }}
+               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">
+                 <h4 class="text-center" style="color:black">
+                   Commentaire de <strong>{{commentaire.utilisateur.username}} :" </strong>
+                   {{ commentaire.commentaire }} "
+               </h4>
+             </a>
+            <p class="text-right"> Sur l'article :                    {{commentaire.article.titre}}
+                <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">Modifier</a>
             </p>
-            <ul style="display-flex">
-                <li>
-                    <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
-                </li>
-            </ul>
+
         </div>
         {% endfor %}
         </div>
