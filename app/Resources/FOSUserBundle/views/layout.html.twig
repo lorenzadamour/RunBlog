@@ -1,9 +1,38 @@
 <!DOCTYPE html>
 <html>
+<style media="screen">
+ a {
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff4f4;
+}
+.navbar-default .navbar-nav>li>a:hover {
+  background-color: white;
+  color: black;
+}
+
+.navbar-default .navbar-nav>li>a {
+color: white;
+}
+
+navbar-default .navbar-brand:hover {
+    color: #ffffff;
+    background-color: transparent;
+}
+navbar-default .navbar-brand {
+    color: skyblue;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-collapse .navbar-nav li a{
+  color: white;
+}
+</style>
     <body>
       <!-- BARRE DE MENU -->
-      <nav class="navbar navbar-default">
-    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" style="    background-color: rgb(255, 255, 255);BORDER: 0px 0PX SOLID #00397f;background: url('../img/sky2.jpg');background-repeat: no-repeat;background-size: cover;">
+    <div class="container ">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -12,7 +41,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ path('homepage') }}">RunBlog</a>
+        <a class="navbar-brand" href="{{ path('homepage') }}"><img src="/img/rb.png" alt="runblog logo" class="img-responsive" style="height: 25px;" /></a>
+        <a class="navbar-brand" href="{{ path('homepage') }}" style="color: #ffffff;">RunBlog</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,7 +73,7 @@
 
       <li class="nav-item">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          <a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connecté en tant que: {{ app.user.username }}<span class="caret"></span></a>
+          <a "href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connecté en tant que: {{ app.user.username }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ path('fos_user_profile_show') }}">Voir profil</a></li>
             <li><a href="{{ path('fos_user_profile_edit') }}">Modifier Profil</a></li>
@@ -97,6 +127,33 @@
     </div><!-- /.container-fluid -->
   </nav>
   <!-- FIN BARRE DE MENU -->
+
+  <!--SLIDER  -->
+  <div class="carousel slide carousel-fade" data-ride="carousel">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        </div>
+    </div>
+
+</div>
+
 
     </body>
 </html>

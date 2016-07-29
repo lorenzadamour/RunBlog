@@ -27,7 +27,9 @@
         <div class="col-md-12">
         <div class=" form col-md-4" style="background-color:white;">
             <ul>
-                <li style="list-style:none;"><a href="{{ path('commentaire_index') }}" class="">GESTION COMMENTAIRES ADMIN</a></li>
+                  {% if is_granted('ROLE_ADMIN') %}
+                <li style="list-style:none;"><a style="color:red;"href="{{ path('commentaire_index') }}" class="">GESTION COMMENTAIRES ADMIN</a></li>
+                  {% endif %}
                 <li style="list-style:none;"><a href="#" class="">Posté</a></li>
                 <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime reçus</a></li>
                 <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime postés</a></li>
