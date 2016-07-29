@@ -1,9 +1,11 @@
 {% include "FOSUserBundle::layout.html.twig" %}
 {% include "base.html.twig" %}
 
-<h1>Commentaires que j'ai likés</h1>
-<div class="container">
+
+<div class="container tableau">
+  <h1 style="color:black;">Commentaires que j'ai likés</h1>
   <table class="table">
+    <div class="container">
       <thead>
           <tr>
 
@@ -12,12 +14,13 @@
       <tbody>
 {% for avis in avis %}
 <tr>
-
+{% if avis.article == NULL %}
 
 <td>Vous avez aimé le commentaire "{{avis.commentaire.commentaire}}" posté par {{avis.commentaire.utilisateur.username}} sur l'article {{avis.commentaire.article.titre}} </td>
-
+{% endif %}
 <tr>
 {% endfor %}
-</tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
 </div>
