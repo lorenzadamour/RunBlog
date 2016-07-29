@@ -112,12 +112,11 @@ class CommentaireController extends Controller
 
     /**
      *
-     * @Route("/{id}/liste", name="commentaire_user")
+     * @Route("/liste/", name="commentaire_user")
      * @Method({"GET","POST"})
      */
 
-     public function CommentAction(Commentaire $commentaire){
-
+     public function commentAction(){
        $utilisateur = $this->getUser();
        $utilisateur->getId();
        $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur]);
