@@ -1,41 +1,39 @@
-{% extends 'base.html.twig' %}
+{% include "FOSUserBundle::layout.html.twig" %}
+{% include "base.html.twig" %}
 
 {% block body %}
+  <div class="container">
     <h1>Commentaire list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Commentaire</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for commentaire in commentaires %}
-            <tr>
-                <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
-                <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ commentaire.commentaire }}</td>
-
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+    <div class="row">
+        <div class="col-md-12">
+        <div class="col-md-4" style="background-color:white;">
+            <ul>
+                <li><a href="#">Tout</a></li>
+                <li><a href="{{ path('commentaire_user') }}">Posté</a></li>
+                <li><a href="{{ path('commentaire_aime') }}">J'aime reçus</a></li>
+                <li><a href="{{ path('commentaire_like') }}">J'aime postés</a></li>
+            </ul>
+        </div>
+        <div class="col-md-offset-2 col-md-6">
+            {% for commentaire in commentaires %}
+            <div style="padding-bottom=5px; background-color:white;">
+               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}"><h2 class="text-center" style="color:black">
+                  {{commentaire.article.titre}}
+               </h2></a>
+            <p>
+              Commentaire de <strong>{{commentaire.utilisateur.username}}</strong></br>
+              {{ commentaire.commentaire }}
+            </p>
+            <ul style="display-flex">
+                <li>
+                    <a href="{{ path('admincommentaire_delete' }}">suprime</a>
+                </li>
+            </ul>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+        </div>
+    </div>
+</div>
 
-    <ul>
-        <li>
-        </li>
-    </ul>
 {% endblock %}

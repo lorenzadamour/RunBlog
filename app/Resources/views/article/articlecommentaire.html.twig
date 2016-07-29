@@ -2,34 +2,38 @@
 {% include "base.html.twig" %}
 
 
-<div class="container tableau">
-  <h1 style="color:black;">Liste des commentaires</h1>
-  <table class="table">
-    <div class="container">
-      <table class="table">
-
-        <tbody>
-        {% for commentaire in commentaires %}
-        <tr>
-
-            <td>
-              Vous avez posté le commentaire "{{commentaire.commentaire| truncate(30, true, ' ...')}}" sur l'article {{commentaire.article.titre}}
-
-              <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}"><i class="fa fa-edit"></i><a>
-
-              <a href="{{ path('commentaire_delete' , {'id': commentaire.id }) }}"><i class="fa fa-remove"></i><a>
-
-
-            </td>
-
-
-
-
-        </tr>
-
-      {% endfor %}
-    </tbody>
-  </table>
+{% block body %}
+  <div class="container">
+    <h1>Commentaire list</h1>
+    <div class="row">
+        <div class="col-md-12">
+        <div class="col-md-4" style="background-color:white;">
+            <ul>
+                <li><a href="#">Posté</a></li>
+                <li><a href="{{ path('commentaire_aime') }}">J'aime reçus</a></li>
+                <li><a href="{{ path('commentaire_like') }}">J'aime postés</a></li>
+            </ul>
+        </div>
+        <div class="col-md-offset-2 col-md-6">
+            {% for commentaire in commentaires %}
+            <div style="padding-bottom=5px; background-color:white;">
+               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}"><h2 class="text-center" style="color:black">
+                  {{commentaire.article.titre}}
+               </h2></a>
+            <p>
+              Commentaire de <strong>{{commentaire.utilisateur.username}}</strong></br>
+              {{ commentaire.commentaire }}
+            </p>
+            <ul style="display-flex">
+                <li>
+                    <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
+                </li>
+            </ul>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
+
+{% endblock %}
