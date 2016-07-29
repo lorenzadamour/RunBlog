@@ -250,14 +250,9 @@ class CommentaireController extends Controller
      */
     public function deleteAdmin(Request $request, Commentaire $commentaire)
     {
-        $form = $this->createDeleteForm($commentaire);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($commentaire);
             $em->flush();
-        }
 
         return $this->redirectToRoute('accueil');
     }
