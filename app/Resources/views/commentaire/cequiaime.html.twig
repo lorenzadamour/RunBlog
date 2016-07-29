@@ -2,7 +2,7 @@
 {% include "base.html.twig" %}
 
 <div class="container tableau">
-<h1>Les utilisateur qui aime mes commentaires</h1>
+<h1 style="color:black;">Les utilisateurs qui aiment mes commentaires</h1>
 
   <table class="table">
 
@@ -13,7 +13,7 @@
 {% if avis.reaction == 1 %}
 
 
-<td>{{avis.utilisateur.username}} a aimé votre commentaire "{{avis.commentaire.commentaire}}" sur l'article {{avis.commentaire.article.titre}}</td>
+<td>{{avis.utilisateur.username}} a aimé votre commentaire "{{avis.commentaire.commentaire| truncate(30, true, ' ...')}}" sur l'article {{avis.commentaire.article.titre}}</td>
 </tr>
 {% endif %}
 {% endfor %}
