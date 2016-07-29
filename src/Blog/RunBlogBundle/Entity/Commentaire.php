@@ -49,7 +49,7 @@ class Commentaire
     protected $article;
 
     /**
-    * @ORM\OneToMany(targetEntity="Avis", mappedBy="commentaire")
+    * @ORM\OneToMany(targetEntity="Avis", mappedBy="commentaire", cascade={"remove", "persist"}))
     */
     private $avis;
 

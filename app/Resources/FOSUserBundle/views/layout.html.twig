@@ -47,7 +47,7 @@
           <ul class="dropdown-menu">
             <li><a href="{{ path('fos_user_profile_show') }}">Voir profil</a></li>
             <li><a href="{{ path('fos_user_profile_edit') }}">Modifier Profil</a></li>
-            <li><a href="{{ path('commentaire_user', {'id':app.user.id}) }}">Mes commentaires</a></li>
+            <li><a href="{{ path('commentaire_user') }}">Mes commentaires</a></li>
             <!-- PARTIE ADMIN -->
             {% if is_granted('ROLE_ADMIN') %}
                   <li><a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle text-center" id="admin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a></li>
