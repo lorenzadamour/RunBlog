@@ -17,13 +17,8 @@ use Blog\RunBlogBundle\Entity\Avis;
 class AvisController extends Controller
 {
 
-  /**
-   * Like a Article entity.
-   *
-   * @Route("/like/{id}", name="article_like")
-   * @Method({"GET", "POST"})
-   */
-  public function likeAction($id)
+
+  /*public function likeAction($id)
   {
       //Recupere utilisateur connecté
       $user = $this->getUser();
@@ -45,37 +40,28 @@ class AvisController extends Controller
       $em->flush();
 
       return $this->redirectToRoute('article');
-  }
+  }*/
 
-  /**
-   * Dislike a Article entity.
-   *
-   * @Route("/dislike/{id}", name="article_dislike")
-   * @Method({"GET", "POST"})
-   */
-  public function dislikeAction($id)
+
+/*  public function dislikeAction($id)
   {
-    //Recupere utilisateur connecté
     $user = $this->getUser();
     $user_id = $user->getUtilisateur();
 
-    //Recupere commentaire
     $getCommentFromDatabase = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Commentaire');
     $commentOfDatabase = $getCommentFromDatabase->find($id);
 
-    //Crée un avis
     $avis = new Avis();
     $avis ->setUtilisateur($user_id)
           ->setCommentaire($commentOfDatabase)
           ->setReaction(-1);
 
-    //Met l'avis en base de donnée
     $em = $this->getDoctrine()->getManager();
     $em->persist($avis);
     $em->flush();
 
     return $this->redirectToRoute('article');
-  }
+  }*/
 
   /**
    * Lists Avis.
