@@ -65,8 +65,8 @@
       {% if is_granted('ROLE_ADMIN') %}
       <div class="col-md-12 text-center">
             <a href="{{ path('article_edit', { 'id': article.id }) }}"><input class="btn btn-primary" type="submit" value="Editer l'article"></a>
+            
       </div>
-          <hr>
       {% endif %}
 
     </div>
