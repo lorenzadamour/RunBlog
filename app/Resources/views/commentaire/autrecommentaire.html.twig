@@ -4,12 +4,14 @@
 <div class="container">
 <div class="row">
 <div class="form col-md-4" style="background-color:white;margin: 60px 40px;">
-    <ul>
-        <li style="list-style:none;"><a href="#" class="">Tout</a></li>
-        <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="">Posté</a></li>
-        <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime reçus</a></li>
-        <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime postés</a></li>
-    </ul>
+  <ul>
+    {% if is_granted('ROLE_ADMIN') %}
+  <li style="list-style:none;"><a style="color:red;"href="{{ path('commentaire_index') }}" class="">GESTION COMMENTAIRES ADMIN</a></li>
+    {% endif %}
+      <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="">Commentaire(s) Posté(s)</a></li>
+      <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime(s) reçu(s)</a></li>
+      <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime(s) posté(s)</a></li>
+  </ul>
 </div>
 <div class="form col-md-offset-2 col-md-6" style="padding-bottom=5px; background-color:white;">
 <h1 style="color:black;">Commentaires que j'ai likés</h1>

@@ -1,15 +1,17 @@
 {% include "FOSUserBundle::layout.html.twig" %}
 {% include "base.html.twig" %}
 
-<div class="container">
+<div class="container" id="marge">
 <div class="row">
 <div class="form col-md-4" style="background-color:white;">
-    <ul>
-        <li style="list-style:none;"><a href="#" >Tout</a></li>
-        <li style="list-style:none;"><a href="{{ path('commentaire_user') }}">Posté</a></li>
-        <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}" >J'aime reçus</a></li>
-        <li style="list-style:none;"><a href="{{ path('commentaire_like')}}" >J'aime postés</a></li>
-    </ul>
+  <ul>
+    {% if is_granted('ROLE_ADMIN') %}
+  <li style="list-style:none;"><a style="color:red;"href="{{ path('commentaire_index') }}" class="">GESTION COMMENTAIRES ADMIN</a></li>
+    {% endif %}
+      <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="">Commentaire(s) Posté(s)</a></li>
+      <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime(s) reçu(s)</a></li>
+      <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime(s) posté(s)</a></li>
+  </ul>
 </div>
 <div class="form col-md-offset-2 col-md-6" style="padding-bottom=5px; background-color:white;margin: 40px 40px;">
 <h1 style="color:black;">Les utilisateurs qui aiment mes commentaires</h1>

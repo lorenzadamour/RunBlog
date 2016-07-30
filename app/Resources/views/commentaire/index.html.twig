@@ -7,26 +7,27 @@
     <div class="row">
         <div class="col-md-12">
         <div class="form col-md-4" style="background-color:white;">
-            <ul>
-                <li style="list-style:none;"><a href="{{ path('commentaire_index') }}" class="">Tout</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="">Posté</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime reçus</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime postés</a></li>
-            </ul>
+          <ul>
+            {% if is_granted('ROLE_ADMIN') %}
+          <li style="list-style:none;"><a style="color:red;"href="{{ path('commentaire_index') }}" class="">GESTION COMMENTAIRES ADMIN</a></li>
+            {% endif %}
+              <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="">Commentaire(s) Posté(s)</a></li>
+              <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime(s) reçu(s)</a></li>
+              <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime(s) posté(s)</a></li>
+          </ul>
         </div>
 
 
         <div class="col-md-offset-2 col-md-6">
             {% for commentaire in commentaires %}
             <div class="form" style="padding-bottom=5px; background-color:white;">
-               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">
                  <h4 class="text-center" style="color:black">
                    Commentaire de <strong>{{commentaire.utilisateur.username}} :" </strong>
                    {{ commentaire.commentaire }} "
                </h4>
-             </a>
-            <p class="text-right"> Sur l'article :                    {{commentaire.article.titre}}
-              <a href="{{ path('admincommentaire_delete', { 'id': commentaire.id }) }}"><i class=" fa fa-remove"></i> supprimer</a>
+            <p class="text-center"> Sur l'article :<a href="{{ path('article_show', { 'id': commentaire.article.id }) }}"> {{commentaire.article.titre}} </a>
+              <br>
+              <a style="color:red;" href="{{ path('admincommentaire_delete', { 'id': commentaire.id }) }}"><i class=" fa fa-remove"></i> supprimer</a>
             </p>
 
         </div>
