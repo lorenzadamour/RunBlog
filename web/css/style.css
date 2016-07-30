@@ -48,5 +48,6 @@ padding: 60px;
 }
 
 #navback{
-  background: url('../img/sky2.jpg');background-repeat: no-repeat;background-size: cover;"
+  background: url('../img/sky2.jpg');background-repeat: no-repeat;background-size: cover;
+  border-color: transparent;
 }

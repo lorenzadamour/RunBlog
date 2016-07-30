@@ -212,7 +212,7 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+            return $this->redirectToRoute('allarticle_index', array('id' => $article->getId()));
         }
 
         return $this->render('article/edit.html.twig', array(

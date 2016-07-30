@@ -1,3 +1,4 @@
+{% include "FOSUserBundle::layout.html.twig" %}
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -11,7 +12,7 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if commentaire.date %}{{ commentaire.date|date('d/m/Y') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Commentaire</th>

@@ -131,38 +131,38 @@ class CommentaireController extends Controller
                 $em->flush();
               return $this->redirectToRoute('commentaire_index');
     }
+    /**
+     *
+     * @Route("/user/", name="commentaire_like")
+     * @Method({"GET","POST"})
+     */
+     public function avisAction(){
+       $utilisateur = $this->getUser();
+       $utilisateur->getId();
+       $avis = new Avis();
+       $commentaire = new Commentaire();
+       $avis = $this->getDoctrine()->getRepository(Avis::class)->findBy(['reaction'=> 1,
+                                                                        'utilisateur'=> $utilisateur],array('id' => 'desc'));
+       return $this->render('commentaire/autrecommentaire.html.twig', array(
+            'avis' => $avis,
+        ));
+     }
      /**
       *
-      * @Route("/user/", name="commentaire_like")
+      * @Route("/userlike/", name="commentaire_aime")
       * @Method({"GET","POST"})
       */
-      public function avisAction(){
+      public function aimerAction(){
+        $em = $this->getDoctrine()->getManager();
         $utilisateur = $this->getUser();
         $utilisateur->getId();
-        $avis = new Avis();
-        $commentaire = new Commentaire();
-        $avis = $this->getDoctrine()->getRepository(Avis::class)->findBy(['reaction'=> 1,
-                                                                         'utilisateur'=> $utilisateur]);
-        return $this->render('commentaire/autrecommentaire.html.twig', array(
-             'avis' => $avis,
-         ));
+        $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
+                          ->findby(array('utilisateur' => $utilisateur),array('id' => 'desc'));
+        return $this->render('commentaire/cequiaime.html.twig', array(
+              'commentaire' => $commentaire,
+              'utilisateurs' => $utilisateur,
+        ));
       }
-      /**
-       *
-       * @Route("/userlike/", name="commentaire_aime")
-       * @Method({"GET","POST"})
-       */
-       public function aimerAction(){
-         $em = $this->getDoctrine()->getManager();
-         $utilisateur = $this->getUser();
-         $utilisateur->getId();
-         $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
-                           ->findby(array('utilisateur' => $utilisateur ));
-         return $this->render('commentaire/cequiaime.html.twig', array(
-               'commentaire' => $commentaire,
-               'utilisateurs' => $utilisateur,
-         ));
-       }
     /**
      * Deletes a Commentaire entity.
      *
