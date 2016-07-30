@@ -1,9 +1,42 @@
 <!DOCTYPE html>
 <html>
+<style media="screen">
+ a {
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff4f4;
+}
+.navbar-default .navbar-nav>li>a:hover {
+  background-color: white;
+  color: black;
+}
+
+.navbar-default .navbar-nav>li>a {
+color: white;
+}
+
+navbar-default .navbar-brand:hover {
+    color: #ffffff;
+    background-color: transparent;
+}
+navbar-default .navbar-brand {
+    color: skyblue;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-collapse .navbar-nav li a{
+  color: white;
+}
+
+#black{
+  color: black;
+}
+</style>
     <body>
       <!-- BARRE DE MENU -->
-      <nav class="navbar navbar-default">
-    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" id="navback" >
+    <div class="container ">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -12,7 +45,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ path('homepage') }}">RunBlog</a>
+        <a class="navbar-brand" href="{{ path('homepage') }}"><img src="/img/rb.png" alt="runblog logo" class="img-responsive" style="height: 25px;" /></a>
+        <a class="navbar-brand" href="{{ path('homepage') }}" style="color: #ffffff;">RunBlog</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,16 +77,18 @@
 
       <li class="nav-item">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          <a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connecté en tant que: {{ app.user.username }}<span class="caret"></span></a>
+          <a "href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connecté en tant que: {{ app.user.username }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ path('fos_user_profile_show') }}">Voir profil</a></li>
-            <li><a href="{{ path('fos_user_profile_edit') }}">Modifier Profil</a></li>
-            <li><a href="{{ path('commentaire_user') }}">Mes commentaires</a></li>
+            <li><a  id="black" href="{{ path('fos_user_profile_show') }}">Voir profil</a></li>
+            <li><a  id="black" href="{{ path('fos_user_profile_edit') }}">Modifier Profil</a></li>
+            <li><a  id="black" href="{{ path('commentaire_user') }}">Mes commentaires</a></li>
             <!-- PARTIE ADMIN -->
             {% if is_granted('ROLE_ADMIN') %}
                   <li><a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle text-center" id="admin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a></li>
-                    <li class=""><a href="{{ path('article_new') }}">Créer un article</a></li>
-                    <li class=""><a href="{{ path('allarticle_index') }}">Voir les articles crées </a></li>
+                    <li class=""><a  id="black" href="{{ path('article_new') }}">Créer un article</a></li>
+                    <li class=""><a  id="black" href="{{ path('allarticle_index') }}">Voir les articles crées </a></li>
+                    <li class=""><a  id="black" href="{{ path('commentaire_index') }}">Gestion de commentaire </a></li>
+
 
 
 
@@ -97,6 +133,33 @@
     </div><!-- /.container-fluid -->
   </nav>
   <!-- FIN BARRE DE MENU -->
+
+  <!--SLIDER  -->
+  <div class="carousel slide carousel-fade" data-ride="carousel">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        </div>
+    </div>
+
+</div>
+
 
     </body>
 </html>

@@ -1,6 +1,5 @@
 body{
-  background-image: url(http://www.fond-ecran-hd.net/pc-driver/1553.jpg);
-  background-repeat: no-repeat;
+
   font-family: 'Roboto Condensed', sans-serif;
 }
 .navbar-default{
@@ -10,18 +9,11 @@ body{
     color: white;
     margin:0;
 }
-.carousel-inner{
-  border-bottom: 5px solid rgba(255,255,255,0.7);
-  height: 250px;
 
-}
 .navbar-default .navbar-nav>li>a:hover{
   background-color:white;
 }
 
-.carousel-indicators{
-
-}
 
 .reservation {
   height: 200px;

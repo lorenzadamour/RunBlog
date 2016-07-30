@@ -16,9 +16,13 @@ h1{
 .cadre:hover{
     box-shadow: 3px 3px 16px #555 ;
 }
+
+#marge{
+  margin-top: 45px;
+}
 </style>
 
-<div class="container tableau">
+<div class="container tableau" id="marge">
 
 
 
@@ -28,7 +32,7 @@ h1{
 
   <div class="col-md-12 text-center">
     <img class="text-center" src="/img/runblog.png" class="img-responsive">
-    <h3 style="padding-top:3%;"><em>La Réunion est une île à découvrir, nous vous proposons de voir en images toutes les merveilles de l'île de La Réunion
+    <h3 style="padding-top:3%;"><em>RunBlog vous propose de voir en images toutes les merveilles de l'île de La Réunion
 les différentes cultures, les paysages en vous proposant de faire des sorties et bien d'autres choses encore...
 Bienvenue sur le blog de l'île Intense !</em></h3>
     <h2 style="padding-top:5%;">Nos derniers articles </h2>
@@ -38,6 +42,7 @@ Bienvenue sur le blog de l'île Intense !</em></h3>
   </div>
         <div class="col-md-12 text-center">
         {% for articles in article %}
+        {% if articles.public == "oui" %}
             <div class="col-md-3" style="text-align: -webkit-center;">
               <div class="cadre">
                 <a href="{{ path('article_show', { 'id': articles.id }) }}" style="text-decoration:none;color:white;">
@@ -46,8 +51,22 @@ Bienvenue sur le blog de l'île Intense !</em></h3>
                 </a>
               </div>
             </div>
+            {% endif %}
           {% endfor %}
         </div>
+        <div class="col-md-12 text-center ">
+          <hr>
+          <small>Partagez notre page avec vos amis ! </small>
+          <div class="fb-like" data-href="http://runblog.simplonreunion.co" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+
+        </div>
+        <div class="col-md-12 text-center" style="margin-top: 20px;color:rgba(0, 0, 0, 0.2);">
+
+
+          <small>© COPYRIGHT : FREDERIC BOYER - LORENZA DAMOUR - KEVIN NARSICADOU- GUILLAUME VACARME </small>
+        </div>
+
+
 
       </div>
 
@@ -163,6 +182,17 @@ transition-delay:.2s;
 
 
     </style>
+    <div id="fb-root"></div>
+    <div id="fb-root"></div>
+    <div id="fb-root"></div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     <script type="text/javascript">
     $(document).ready(function () {

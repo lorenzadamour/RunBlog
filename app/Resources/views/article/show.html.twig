@@ -17,7 +17,7 @@
 <div class="col-lg-8">
 
     <!-- Blog Post -->
-
+    {% if article.public == "oui" %}
     <!-- Title -->
     <h1 style="color:black;font-weight:bolder;margin-top:11%;">{{ article.titre }}</h1>
 
@@ -123,7 +123,7 @@
         <div class="media-body">
             <h4 class="media-heading" style="font-weight:bolder;">{{commentaire.utilisateur.username}}
                 <small>
-                {{commentaire.date|date('d/m/Y h:i:s')}}
+                {{commentaire.date|date('d/m/Y')}}
               </small>
             </h4>
 
@@ -183,4 +183,5 @@
 
 
 
+{% endif %}
 {% endblock %}

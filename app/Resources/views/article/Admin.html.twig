@@ -5,7 +5,7 @@
 
 <div class="container tableau">
   <div class="col-md-12 text-center">
-    <h2>Liste d'article crée</h2>
+    <h2 class="text-uppercase">Liste d'article crée(s)</h2>
 
 
   </div>
@@ -14,18 +14,18 @@
       <tr>
         <th >Titre</th>
         <th class="text-center">Date</th>
-        <th class="text-center">Publié</th>
+        <th class="text-center">Etat</th>
         <th class="text-center">J'aime(s)</th>
-        <th class="text-center">Commentaire</th>
-        <th class="text-center">Actions</th>
+        <th class="text-center">Commentaire(s)</th>
+        <th class="text-center"></th>
       </tr>
     </thead>
     <tbody>
       {% for article in articles %}
           <tr>
-              <td><a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre }} </a> </td>
-              <td class="text-center">{{ article.date }}</td>
-              <td><div class="btn-group btn-toggle" data-toggle="buttons">
+              <td><a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre }} </a><br><small>contenu de l'article : {{ article.description| truncate(60,true,"...") }} </small></td>
+              <td class="text-center">{{ article.date|date("d/m/Y") }}</td>
+              <td class="text-center"><div class="btn-group btn-toggle" data-toggle="buttons">
                   <label class="btn {% if article.public == 'oui' %}btn-primary{% endif %}">
                       <input type="radio" name="options" value="option1" disabled> Publié
                   </label>

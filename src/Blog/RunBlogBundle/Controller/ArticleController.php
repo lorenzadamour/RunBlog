@@ -19,40 +19,36 @@ use Blog\RunBlogBundle\Form\CommentaireType;
  */
 class ArticleController extends Controller
 {
-    /**
-     * Lists Article Published.
-     *
-     * @Route("/", name="article_index")
-     * @Method("GET")
-     */
-    public function articlesPublierAction()
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')->findby(array('public' => 'oui'),array('id' => 'desc'));
+  /**
+   * Lists Article Published.
+   *
+   * @Route("/", name="article_index")
+   * @Method("GET")
+   */
+  public function articlesPublierAction()
+  {
+      $em = $this->getDoctrine()->getManager();
+      $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')->findby(array('public' => 'oui'),array('id' => 'desc'));
+      return $this->render('article/index.html.twig', array(
+          'articles' => $articlespublier,
+      ));
+  }
 
-        return $this->render('article/index.html.twig', array(
-            'articles' => $articlespublier,
-        ));
-    }
-
-    /**
-     * Lists all Article entities.
-     *
-     * @Route("/admin/", name="allarticle_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $articles = $em->getRepository('BlogRunBlogBundle:Article')->findby(array(),array('id' => 'desc'));
-
-        return $this->render('article/Admin.html.twig', array(
-            'articles' => $articles,
-        ));
-    }
-
+  /**
+       * Lists all Article entities.
+       *
+       * @Route("/admin/", name="allarticle_index")
+       * @Method("GET")
+       */
+      public function indexAction()
+      {
+          $em = $this->getDoctrine()->getManager();
+          $articles = $em->getRepository('BlogRunBlogBundle:Article')->findby(array(),array('id' => 'desc'));
+          return $this->render('article/Admin.html.twig', array(
+              'articles' => $articles,
+          ));
+      }
 
      /*public function aimerAction(){
        $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Article');
@@ -216,7 +212,7 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('article_edit', array('id' => $article->getId()));
+            return $this->redirectToRoute('allarticle_index', array('id' => $article->getId()));
         }
 
         return $this->render('article/edit.html.twig', array(

@@ -2,36 +2,36 @@
 {% include "base.html.twig" %}
 
 {% block body %}
-  <div class="container">
-    <h1>Commentaire list</h1>
+  <div id="marge" class="container">
+    <h1 style="text-transform: uppercase;">Liste de tous les commentaires</h1>
     <div class="row">
         <div class="col-md-12">
         <div class="form col-md-4" style="background-color:white;">
             <ul>
-                <li style="list-style:none;"><a href="#" class="btn btn-primary">Tout</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="btn btn-primary">Posté</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="btn btn-primary" >J'aime reçus</a></li>
-                <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="btn btn-primary" >J'aime postés</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_index') }}" class="">Tout</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_user') }}"class="">Posté</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_aime')}}"class="" >J'aime reçus</a></li>
+                <li style="list-style:none;"><a href="{{ path('commentaire_like')}}"class="" >J'aime postés</a></li>
             </ul>
         </div>
+
+
         <div class="col-md-offset-2 col-md-6">
             {% for commentaire in commentaires %}
             <div class="form" style="padding-bottom=5px; background-color:white;">
-               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}"><h2 class="text-center" style="color:black">
-                  {{commentaire.article.titre}}
-               </h2></a>
-            <p>
-              Commentaire de <strong>{{commentaire.utilisateur.username}}</strong></br>
-              {{ commentaire.commentaire }}
+               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">
+                 <h4 class="text-center" style="color:black">
+                   Commentaire de <strong>{{commentaire.utilisateur.username}} :" </strong>
+                   {{ commentaire.commentaire }} "
+               </h4>
+             </a>
+            <p class="text-right"> Sur l'article :                    {{commentaire.article.titre}}
+              <a href="{{ path('admincommentaire_delete', { 'id': commentaire.id }) }}"><i class=" fa fa-remove"></i> supprimer</a>
             </p>
-            <ul style="display-flex">
-                <li>
-                    <a href="{{ path('admincommentaire_delete', { 'id': commentaire.id }) }}">suprime</a>
-                </li>
-            </ul>
+
         </div>
         {% endfor %}
-        </div>
+
         </div>
     </div>
 </div>
