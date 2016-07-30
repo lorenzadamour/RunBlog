@@ -42,3 +42,11 @@ padding: 60px;
   text-align: right;
 
 }
+
+#marge{
+  margin-top: 50px;
+}
+
+#navback{
+  background: url('../img/sky2.jpg');background-repeat: no-repeat;background-size: cover;"
+}

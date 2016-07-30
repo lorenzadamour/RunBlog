@@ -14,7 +14,7 @@
       <tr>
         <th >Titre</th>
         <th class="text-center">Date</th>
-        <th class="text-center">Publié</th>
+        <th class="text-center">Etat</th>
         <th class="text-center">J'aime(s)</th>
         <th class="text-center">Commentaire</th>
         <th class="text-center">Actions</th>
@@ -25,7 +25,7 @@
           <tr>
               <td><a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre }} </a> </td>
               <td class="text-center">{{ article.date }}</td>
-              <td><div class="btn-group btn-toggle" data-toggle="buttons">
+              <td class="text-center"><div class="btn-group btn-toggle" data-toggle="buttons">
                   <label class="btn {% if article.public == 'oui' %}btn-primary{% endif %}">
                       <input type="radio" name="options" value="option1" disabled> Publié
                   </label>

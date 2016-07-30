@@ -1,7 +1,5 @@
 <?php
-
 namespace Blog\RunBlogBundle\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -11,7 +9,6 @@ use Blog\RunBlogBundle\Entity\Article;
 use Blog\RunBlogBundle\Entity\Commentaire;
 use Blog\RunBlogBundle\Form\CommentaireType;
 use Blog\RunBlogBundle\Entity\Avis;
-
 /**
  * Commentaire controller.
  *
@@ -19,8 +16,6 @@ use Blog\RunBlogBundle\Entity\Avis;
  */
 class CommentaireController extends Controller
 {
-
-
   /**
    *
    * @Route("/", name="commentaire_user")
@@ -35,7 +30,6 @@ class CommentaireController extends Controller
           'commentaires' => $commentaire,
       ));
    }
-
     /**
      * Lists all Commentaire entities.
      *
@@ -45,14 +39,11 @@ class CommentaireController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $commentaires = $em->getRepository('BlogRunBlogBundle:Commentaire')->findAll();
-
         return $this->render('commentaire/index.html.twig', array(
             'commentaires' => $commentaires,
         ));
     }
-
     /**
      * Creates a new Commentaire entity.
      *
@@ -76,13 +67,11 @@ class CommentaireController extends Controller
             $em->flush();
             return $this->redirectToRoute('commentaire_show', array('id' => $commentaire->getId()));
         }
-
         return $this->render('commentaire/new.html.twig', array(
             'commentaire' => $commentaire,
             'form' => $form->createView(),
         ));
     }
-
     /**
      * Finds and displays a Commentaire entity.
      *
@@ -92,13 +81,11 @@ class CommentaireController extends Controller
     public function showAction(Commentaire $commentaire)
     {
         $deleteForm = $this->createDeleteForm($commentaire);
-
         return $this->render('commentaire/show.html.twig', array(
             'commentaire' => $commentaire,
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Displays a form to edit an existing Commentaire entity.
      *
@@ -109,28 +96,20 @@ class CommentaireController extends Controller
     {
         $utilisateur = $this->getUser();
         $utilisateur->getId();
-
         $ifadmin = $this->getUser();
         $ifadmin->getRoles();
-
         $em = $this->getDoctrine()->getManager();
         $comment = $em->getRepository('BlogRunBlogBundle:Commentaire')->findBy(array('id' => $commentaire , 'utilisateur' => $utilisateur));
-
         if($comment || $ifadmin == 'ROLE_ADMIN'){
-
             $deleteForm = $this->createDeleteForm($commentaire);
             $editForm = $this->createForm('Blog\RunBlogBundle\Form\CommentaireType', $commentaire);
             $editForm->handleRequest($request);
-
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($commentaire);
                 $em->flush();
-
                 return $this->redirectToRoute('commentaire_user');
               }
-
-
               return $this->render('commentaire/edit.html.twig', array(
                 'commentaire' => $commentaire,
                 'edit_form' => $editForm->createView(),
@@ -139,46 +118,24 @@ class CommentaireController extends Controller
         }
         return $this->redirectToRoute('accueil');
     }
-
-
     /**
      * Displays a form to edit an existing Commentaire entity.
      *
-     * @Route("/admin/{id}/edit", name="admincommentaire_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/admin/{id}/", name="admincommentaire_delete")
+     * @Method({"GET", "DELETE"})
      */
-    public function editAdmin(Request $request, Commentaire $commentaire)
+    public function deleteAdmin(Commentaire $commentaire)
     {
-
-
-            $deleteForm = $this->createDeleteForm($commentaire);
-            $editForm = $this->createForm('Blog\RunBlogBundle\Form\CommentaireType', $commentaire);
-            $editForm->handleRequest($request);
-
-            if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($commentaire);
+                $em->remove($commentaire);
                 $em->flush();
-
-                return $this->redirectToRoute('article_show', array('id' => $article->getId()));
-              }
-
-
-              return $this->render('commentaire/edit.html.twig', array(
-                'commentaire' => $commentaire,
-                'edit_form' => $editForm->createView(),
-                'delete_form' => $deleteForm->createView(),
-              ));
-
+              return $this->redirectToRoute('commentaire_index');
     }
-
-
      /**
       *
       * @Route("/user/", name="commentaire_like")
       * @Method({"GET","POST"})
       */
-
       public function avisAction(){
         $utilisateur = $this->getUser();
         $utilisateur->getId();
@@ -190,7 +147,6 @@ class CommentaireController extends Controller
              'avis' => $avis,
          ));
       }
-
       /**
        *
        * @Route("/userlike/", name="commentaire_aime")
@@ -198,20 +154,15 @@ class CommentaireController extends Controller
        */
        public function aimerAction(){
          $em = $this->getDoctrine()->getManager();
-
          $utilisateur = $this->getUser();
          $utilisateur->getId();
          $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
                            ->findby(array('utilisateur' => $utilisateur ));
-
          return $this->render('commentaire/cequiaime.html.twig', array(
                'commentaire' => $commentaire,
                'utilisateurs' => $utilisateur,
          ));
-
        }
-
-
     /**
      * Deletes a Commentaire entity.
      *
@@ -222,41 +173,19 @@ class CommentaireController extends Controller
     {
         $utilisateur = $this->getUser();
         $utilisateur->getId();
-
         $em = $this->getDoctrine()->getManager();
         $comment = $em->getRepository('BlogRunBlogBundle:Commentaire')->findBy(array('id' => $commentaire , 'utilisateur' => $utilisateur));
-
         if($comment){
         $form = $this->createDeleteForm($commentaire);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($commentaire);
             $em->flush();
         }
-
-
         }
         return $this->redirectToRoute('accueil');
     }
-
-
-    /**
-     * Deletes a Commentaire entity.
-     *
-     * @Route("/admin/{id}", name="admincommentaire_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAdmin(Request $request, Commentaire $commentaire)
-    {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($commentaire);
-            $em->flush();
-
-        return $this->redirectToRoute('accueil');
-    }
-
     /**
      * Creates a form to delete a Commentaire entity.
      *
