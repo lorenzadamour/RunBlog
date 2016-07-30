@@ -25,25 +25,25 @@ class CommentaireController extends Controller
      $utilisateur = $this->getUser();
      $utilisateur->getId();
      $em = $this->getDoctrine()->getManager();
-     $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur]);
+     $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur],array('id' => 'desc'));
      return $this->render('article/articlecommentaire.html.twig', array(
           'commentaires' => $commentaire,
       ));
    }
-    /**
-     * Lists all Commentaire entities.
-     *
-     * @Route("/admin/", name="commentaire_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $commentaires = $em->getRepository('BlogRunBlogBundle:Commentaire')->findAll();
-        return $this->render('commentaire/index.html.twig', array(
-            'commentaires' => $commentaires,
-        ));
-    }
+   /**
+    * Lists all Commentaire entities.
+    *
+    * @Route("/admin/", name="commentaire_index")
+    * @Method("GET")
+    */
+   public function indexAction()
+   {
+       $em = $this->getDoctrine()->getManager();
+       $commentaires = $em->getRepository('BlogRunBlogBundle:Commentaire')->findBy(array(),array('id' => 'desc'));
+       return $this->render('commentaire/index.html.twig', array(
+           'commentaires' => $commentaires,
+       ));
+   }
     /**
      * Creates a new Commentaire entity.
      *
