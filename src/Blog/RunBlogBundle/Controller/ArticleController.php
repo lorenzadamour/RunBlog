@@ -29,7 +29,7 @@ class ArticleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')->findby(array('public' => 'oui'));
+        $articlespublier = $em->getRepository('BlogRunBlogBundle:Article')->findby(array('public' => 'oui'),array('id' => 'desc'));
 
         return $this->render('article/index.html.twig', array(
             'articles' => $articlespublier,
@@ -39,14 +39,14 @@ class ArticleController extends Controller
     /**
      * Lists all Article entities.
      *
-     * @Route("/admin", name="allarticle_index")
+     * @Route("/admin/", name="allarticle_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository('BlogRunBlogBundle:Article')->findAll();
+        $articles = $em->getRepository('BlogRunBlogBundle:Article')->findby(array(),array('id' => 'desc'));
 
         return $this->render('article/Admin.html.twig', array(
             'articles' => $articles,

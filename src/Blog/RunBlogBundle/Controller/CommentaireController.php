@@ -30,7 +30,7 @@ class CommentaireController extends Controller
      $utilisateur = $this->getUser();
      $utilisateur->getId();
      $em = $this->getDoctrine()->getManager();
-     $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur]);
+     $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['utilisateur'=>$utilisateur],array('id' => 'desc'));
      return $this->render('article/articlecommentaire.html.twig', array(
           'commentaires' => $commentaire,
       ));
@@ -46,7 +46,7 @@ class CommentaireController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $commentaires = $em->getRepository('BlogRunBlogBundle:Commentaire')->findAll();
+        $commentaires = $em->getRepository('BlogRunBlogBundle:Commentaire')->findBy(array(),array('id' => 'desc'));
 
         return $this->render('commentaire/index.html.twig', array(
             'commentaires' => $commentaires,
@@ -185,7 +185,7 @@ class CommentaireController extends Controller
         $avis = new Avis();
         $commentaire = new Commentaire();
         $avis = $this->getDoctrine()->getRepository(Avis::class)->findBy(['reaction'=> 1,
-                                                                         'utilisateur'=> $utilisateur]);
+                                                                         'utilisateur'=> $utilisateur],array('id' => 'desc'));
         return $this->render('commentaire/autrecommentaire.html.twig', array(
              'avis' => $avis,
          ));
@@ -202,7 +202,7 @@ class CommentaireController extends Controller
          $utilisateur = $this->getUser();
          $utilisateur->getId();
          $commentaire = $em->getRepository('BlogRunBlogBundle:Commentaire')
-                           ->findby(array('utilisateur' => $utilisateur ));
+                           ->findby(array('utilisateur' => $utilisateur),array('id' => 'desc'));
 
          return $this->render('commentaire/cequiaime.html.twig', array(
                'commentaire' => $commentaire,
@@ -250,11 +250,17 @@ class CommentaireController extends Controller
      */
     public function deleteAdmin(Request $request, Commentaire $commentaire)
     {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($commentaire);
-            $em->flush();
+      $form = $this->createDeleteForm($commentaire);
+      $form->handleRequest($request);
 
-        return $this->redirectToRoute('accueil');
+      if ($form->isSubmitted() && $form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->remove($commentaire);
+          $em->flush();
+      }
+
+      return $this->redirectToRoute('article_index');
+
     }
 
     /**
