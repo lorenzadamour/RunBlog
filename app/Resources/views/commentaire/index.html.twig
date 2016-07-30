@@ -2,7 +2,7 @@
 {% include "base.html.twig" %}
 
 {% block body %}
-  <div class="container">
+  <div id="marge" class="container">
     <h1 style="text-transform: uppercase;">Liste de tous les commentaires</h1>
     <div class="row">
         <div class="col-md-12">
@@ -32,25 +32,6 @@
         </div>
         {% endfor %}
 
-
-        <div class="col-md-offset-2 col-md-6">
-            {% for commentaire in commentaires %}
-            <div class="form" style="padding-bottom=5px; background-color:white;">
-               <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}"><h4 class="text-center" style="color:black">
-                 Commentaire de <strong>{{commentaire.utilisateur.username}}</strong></br>
-                 {{ commentaire.commentaire }}
-               </h4></a>
-            <p class="text-right">
-              {{commentaire.article.titre}}
-            </p>
-            <ul style="display-flex">
-                <li>
-                    <a href="{{ path('admincommentaire_delete', { 'id': commentaire.id }) }}">suprime</a>
-                </li>
-            </ul>
-        </div>
-        {% endfor %}
-        </div>
         </div>
     </div>
 </div>
