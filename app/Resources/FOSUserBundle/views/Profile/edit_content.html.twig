@@ -11,8 +11,8 @@
 <div class="form">
 
   <ul class="tab-group">
-    <li class="tab"><a href="{{ path('fos_user_profile_show') }}">VOIR PROFIL</a></li>
-    <li class="tab active"><a href="#signup">MODIFIER PROFIL </a></li>
+    <li class="tab"><a href="{{ path('fos_user_profile_show') }}">PROFIL</a></li>
+    <li class="tab active"><a href="#signup">MODIFIER</a></li>
   </ul>
 
   <div class="tab-content">
@@ -87,3 +87,6 @@
   </div><!-- tab-content -->
 
 </div> <!-- /form -->
+
+
+<input type="password" id="fos_user_profile_form_current_password" name="fos_user_profile_form[current_password]" required="required">

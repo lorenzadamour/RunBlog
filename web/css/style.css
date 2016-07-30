@@ -51,3 +51,7 @@ padding: 60px;
   background: url('../img/sky2.jpg');background-repeat: no-repeat;background-size: cover;
   border-color: transparent;
 }
+
+.labelpub{
+  color: grey;
+}

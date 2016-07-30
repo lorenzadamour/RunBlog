@@ -2,12 +2,25 @@
 {% include 'base.html.twig' %}
 
 <style>
+#labelpub{
+  color: grey;
+}
 label{
+  color: transparent;
+    font-size: 15px;
+    position: inherit;
+    margin-right: 10px;
+}
+.labelsupp{
   color: transparent;
 }
 
 textarea{
   margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+select{
   margin-bottom: 2%;
 }
 </style>
@@ -21,6 +34,7 @@ textarea{
     <h1>Modifier L'article </h1>
     <div class="form" style="">
       {{ form_start(edit_form) }}
+      {{ form_widget(edit_form, { 'attr': {'class': 'labelpub'} }) }}
           {{ form_widget(edit_form) }}
 
           <div class="col-md-6">
@@ -31,6 +45,7 @@ textarea{
 </div>
 <div class="col-md-6">
       {{ form_start(delete_form) }}
+      {{ form_widget(delete_form, { 'attr': {'style': 'color:transparent;'} }) }}
           <input type="submit" class="btn-sm btn-danger" value="Supprimer" style="margin-bottom:2%;background-color: rgb(202, 30, 30);}">
       {{ form_end(delete_form) }}
 </div>

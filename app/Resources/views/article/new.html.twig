@@ -14,6 +14,13 @@ input{
 button{
   margin-top: 2%;
 }
+
+label{
+    color: white;
+    font-size: 15px;
+    position: inherit;
+    margin-right: 10px;
+}
 </style>
 {% block body %}
     <div class="form">
@@ -22,7 +29,9 @@ button{
           {{ form_widget(form) }}
           <button type="submit" class="button button-block"/>Creer</button>
       {{ form_end(form) }}
-      <a  id="black" href="{{ path('allarticle_index') }}">retour à la liste</a>
+      <div class="col-md-12 text-center" style="margin-top: 10px;">
+      <a style="color:grey;" id="black" href="{{ path('allarticle_index') }}">retour à la liste</a>
+    </div>
     </div>
 
 

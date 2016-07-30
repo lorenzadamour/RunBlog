@@ -22,6 +22,7 @@ class ArticleType extends AbstractType
             ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => false))
             ->add('public')
             ->add('public', ChoiceType::class, array(
+              'placeholder' => 'Publier ?',
               'label' => false,
               'choices' => array(
                 'oui' => 'oui',
