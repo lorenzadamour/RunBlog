@@ -25,7 +25,7 @@
 {% if avis.reaction == 1 %}
 
 
-<td><strong>{{avis.utilisateur.username}}</strong> a aimé votre commentaire "{{avis.commentaire.commentaire| truncate(30, true, ' ...')}}" sur l'article {{avis.commentaire.article.titre}}</td>
+<td><strong>{{avis.utilisateur.username}}</strong> a aimé votre commentaire "{{avis.commentaire.commentaire| truncate(30, true, ' ...')}}" sur l'article <a href="{{ path('article_show', { 'id': commentaire.article.id }) }}"> {{avis.commentaire.article.titre}} </a></td>
 </tr>
 {% endif %}
 {% endfor %}

@@ -81,6 +81,7 @@ navbar-default .navbar-brand {
           <ul class="dropdown-menu">
             <li><a  id="black" href="{{ path('fos_user_profile_show') }}">Voir profil</a></li>
             <li><a  id="black" href="{{ path('fos_user_profile_edit') }}">Modifier Profil</a></li>
+            <li><a  id="black" href="{{ path('fos_user_change_password') }}">Modifier mot de passe</a></li>
             <li><a  id="black" href="{{ path('commentaire_user') }}">Mes commentaires</a></li>
             <!-- PARTIE ADMIN -->
             {% if is_granted('ROLE_ADMIN') %}

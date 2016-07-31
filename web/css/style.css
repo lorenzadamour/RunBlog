@@ -50,8 +50,15 @@ padding: 60px;
 #navback{
   background: url('../img/sky2.jpg');background-repeat: no-repeat;background-size: cover;
   border-color: transparent;
+    border-width: 0 0 0px;
+}
 }
 
 .labelpub{
   color: grey;
+}
+
+.error{
+  color: red;
+  font-size: 15px;
 }

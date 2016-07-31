@@ -4,11 +4,14 @@
 
 
 <div class="container tableau">
-  <div class="col-md-12 text-center">
-    <h2 class="text-uppercase">Liste d'article crée(s)</h2>
+  <div class="table-responsive">
+    <div class="col-md-12 text-center">
+      <h2 class="text-uppercase">Liste d'article crée(s)</h2>
 
 
-  </div>
+    </div>
+
+
   <table class="table">
     <thead>
       <tr>
@@ -65,7 +68,8 @@
       {% endfor %}
     </tbody>
   </table>
-  <div class="tableau text-center">
+    </div>
+  <div class=" text-center" style="margin-top:10px;">
     <a href="{{ path('article_new') }}"><button class="btn btn-primary" type="button" name="button"> <i class="fa fa-plus"></i> Nouvel Article</button></a>
   </div>
 </div>

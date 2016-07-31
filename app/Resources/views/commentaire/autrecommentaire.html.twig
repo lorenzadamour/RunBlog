@@ -27,7 +27,7 @@
 <tr>
 {% if avis.article == NULL %}
 
-<td>Vous avez aimé le commentaire "{{avis.commentaire.commentaire}}" posté par {{avis.commentaire.utilisateur.username}} sur l'article {{avis.commentaire.article.titre}} </td>
+<td>Vous avez aimé le commentaire "{{avis.commentaire.commentaire}}" posté par {{avis.commentaire.utilisateur.username}} sur l'article <a href="{{ path('article_show', { 'id': avis.commentaire.article.id }) }}"> {{avis.commentaire.article.titre}} </a> </td>
 {% endif %}
 <tr>
 {% endfor %}

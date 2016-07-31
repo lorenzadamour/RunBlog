@@ -47,6 +47,10 @@
         {{ form_widget(form.current_password, {'attr': {'placeholder':'Mot de passe'}}) }}
         {{ form_errors(form.current_password) }}
       </div>
+      <div class="field-wrap form-group text-center">
+      <a href="{{ path('fos_user_change_password') }}">Changer de mot de passe ?</a>
+    </div>
+
 
 
 
@@ -87,6 +91,3 @@
   </div><!-- tab-content -->
 
 </div> <!-- /form -->
-
-
-<input type="password" id="fos_user_profile_form_current_password" name="fos_user_profile_form[current_password]" required="required">
