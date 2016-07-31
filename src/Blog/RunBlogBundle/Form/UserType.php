@@ -19,7 +19,7 @@ class UserType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('dateDeNaissance', DateType::class, array('years' => range(1920,1998),))
+            ->add('dateDeNaissance', DateType::class, array('years' => range(1940,2016),))
             ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
 
         ;

@@ -1,6 +1,9 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="form">
+  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+  <p class="col-md-12 text-center" style="color:white;">Oops ! je crois que vous êtes déjà inscrit(e) :3 !Souhaitez-vous retourner à l'<a href="{{ path('homepage') }}">accueil </a>? ou prenez le temps de lire l'un de<a href="{{ path('article_index') }}"> nos articles </a>? :) </p>
+  {% else %}
 
   <ul class="tab-group">
     <li class="tab active"><a href="#signup">S'inscrire</a></li>
@@ -79,6 +82,7 @@
       <p class="forgot"><a href="#">Forgot Password?</a></p>
 
       <button class="button button-block"/>Log In</button>
+      {% endif %}
 
       </form>
 

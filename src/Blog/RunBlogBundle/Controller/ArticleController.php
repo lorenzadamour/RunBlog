@@ -96,30 +96,27 @@ class ArticleController extends Controller
      */
     public function likeArticle(Article $article, Request $request)
     {
+        if ($this->getUser()) {
         $article->getId();
         $user = $this->getUser();
         $user->getId();
-
         $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Avis');
         $avis = $em->findBy(array('article' => $article ,'utilisateur' => $user));
-
         if ($avis) {
           return $this->redirectToRoute('article_show', array('id' => $article->getId()));
-
         }else {
           $avis = new Avis();
           $avis->setArticle($article)
                ->setUtilisateur($user)
                ->setReaction(1);
-
           $em = $this->getDoctrine()->getManager();
           $em->persist($avis);
           $em->flush();
           return $this->redirectToRoute('article_show', array('id' => $article->getId()));
         }
-
+      }
+      return $this->redirectToRoute('fos_user_security_login');
     }
-
     /**
      * Like Article entity.
      *
@@ -128,29 +125,27 @@ class ArticleController extends Controller
      */
     public function likeComment(Article $article, Commentaire $commentaire, Request $request)
     {
+        if ($this->getUser()) {
         $article->getId();
         $commentaire->getId();
         $user = $this->getUser();
         $user->getId();
-
         $em = $this->getDoctrine()->getManager()->getRepository('BlogRunBlogBundle:Avis');
         $avis = $em->findBy(array('commentaire' => $commentaire ,'utilisateur' => $user));
-
         if ($avis) {
           return $this->redirectToRoute('article_show', array('id' => $article->getId()));
-
         }else {
           $avis = new Avis();
           $avis->setCommentaire($commentaire)
                ->setUtilisateur($user)
                ->setReaction(1);
-
           $em = $this->getDoctrine()->getManager();
           $em->persist($avis);
           $em->flush();
           return $this->redirectToRoute('article_show', array('id' => $article->getId()));
         }
-
+      }
+      return $this->redirectToRoute('fos_user_security_login');
     }
 
     /**
